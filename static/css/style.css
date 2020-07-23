@@ -1,0 +1,27 @@
+body {
+  font-family: 'Nunito', sans-serif;
+}
+
+#navigation {
+  background-color:#504965;
+}
+
+#navigation a {
+  color:#F4DACD;
+}
+
+#navigation a.nav-item:hover {
+  color:#F38676;
+}
+
+.navbar-nav .btn {
+  background-color:#C55C79;
+  margin-left:10px;
+  border:none;
+  width:90px;
+}
+
+.navbar-nav .btn:hover, .navbar-nav .btn:focus {
+  color:#F4DACD;
+  background-color:#ac405e;
+}
