@@ -30,10 +30,12 @@ def login():
     form = UserForm(request.form)
     if(request.method == 'POST' and form.validate()):
         if(User.authenticate(form.data['username'], form.data['password'])):
-            session['username'] = form.data['username'] #TODO: secure sessions
+            session['username'] = form.data['username'] #TODO: secure sessions, maybe use unique mongo id for this?
             session['lin'] = True
             return(redirect(url_for('landing.tester')))
         flash('invalid username or password')
         return redirect(url_for('user.login'))
         #TODO: return to this and fix it so it properly sends you to sign up n stuff
     return render_template('login.html', form=form)
+
+
