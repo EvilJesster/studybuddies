@@ -55,6 +55,9 @@ def setup():
         return(redirect(url_for('landing.tester')))
     return(render_template('setup.html', form=form))
 
+
+
+
 @user.route('/logout')
 def logout():
     session.clear()

@@ -4,7 +4,7 @@ landing = Blueprint('landing', __name__)
 
 
 @landing.route('/')
-def tester():
+def tester(): #TODO:make this a real name
     users = mongo.db.users
     #userinfo.insert({'event': 'event_name', 'date': 'event_date', 'user': 'user_name'})
     if(session.get('lin') == True):
