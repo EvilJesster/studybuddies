@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block nav %}
-  <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
-        <a class="navbar-brand" href="#">
+  <nav class="navbar navbar-expand-lg navbar-light stickyHeader" id="navigation">
+        <a class="navbar-brand" href="/">
             <img src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
     Study Buddies
         </a>
@@ -10,7 +10,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content:flex-end">
             <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">
+                <a class="nav-item nav-link active" href="/">
                     Home <span class="sr-only">(current)</span>
                 </a>
                 <a class="nav-item nav-link" href="#">Subjects</a>
@@ -23,9 +23,16 @@
 {% endblock %}
 
 {%  block content %}
-    <div class="container-lg">
+    <div id="background">
+    <div class="container-lg" id="bg-contain" style="z-index:9999">
+        {%  block inner_content %}
         <div id="welcome">
-            hello!!!
+            <b>Welcome!</b><br/>
+            <span class="subtitle">Expand your education by getting connected to other students around the world.</span>
+            <br/><br/>
+            <a href="/signup"><button type="button" class="btn get-started btn-lg">Get started</button></a>
         </div>
+        {% endblock %}
+    </div>
     </div>
 {% endblock %}

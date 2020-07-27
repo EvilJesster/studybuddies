@@ -1,18 +1,26 @@
-body {
+html, body {
   font-family: 'Nunito', sans-serif;
+  height:100vh;
+}
+
+.stickyHeader {
+position: fixed;
+width: 100%;
 }
 
 #navigation {
   background-color:#504965;
-  position:fixed;
+  position:absolute;
+  z-index:99999999;
 }
 
-#navigation a {
+#navigation a, .our-footer a {
   color:#F4DACD;
 }
 
-#navigation a.nav-item:hover {
+#navigation a.nav-item:hover, .our-footer a:hover {
   color:#F38676;
+  text-decoration:none;
 }
 
 .navbar-nav .btn {
@@ -22,15 +30,63 @@ body {
   width:90px;
 }
 
-.navbar-nav .btn:hover, .navbar-nav .btn:focus {
+#background{
+    width:100%;
+    height:100%;
+    background-image:url('https://i.imgur.com/AQfn8nR.jpg');
+    z-index:-9999999999;
+}
+
+#bg-contain {
+    display:flex;
+    justify-content:center;
+    position:relative;
+    width:100%;
+    height:600px;
+    z-index:999999;
+}
+
+.get-started {
+    background-color:#C55C79;
+    color:#F4DACD;
+}
+
+.navbar-nav .btn:hover, .navbar-nav .btn:focus, .get-started:hover, .get-started:focus {
   color:#F4DACD;
   background-color:#ac405e;
 }
 
 #welcome {
-    position:absolute;
-    color:pink;
-    margin-top:100px;
-    padding-left:100px;
+    padding:50px;
+    width:75%;
+    align-self:center;
+    font-size:50px;
+    color:#F4DACD;
     text-align:center;
+    line-height:1;
+}
+
+#formbox{
+    padding:50px;
+    padding-top:150px;
+    height:100px;
+    width:75%;
+    font-size:20px;
+    color:#C55C79;
+    text-align:center;
+    line-height:1;
+}
+
+.subtitle {
+    color:#F4DACD;
+    font-size:25px;
+}
+
+.our-footer{
+    background-color:#504965;
+    color:#F4DACD;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 7rem;
 }
