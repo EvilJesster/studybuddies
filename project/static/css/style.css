@@ -4,6 +4,7 @@ body {
 
 #navigation {
   background-color:#504965;
+  position:fixed;
 }
 
 #navigation a {
@@ -24,4 +25,12 @@ body {
 .navbar-nav .btn:hover, .navbar-nav .btn:focus {
   color:#F4DACD;
   background-color:#ac405e;
+}
+
+#welcome {
+    position:absolute;
+    color:pink;
+    margin-top:100px;
+    padding-left:100px;
+    text-align:center;
 }
