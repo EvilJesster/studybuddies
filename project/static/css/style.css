@@ -9,14 +9,17 @@ width: 100%;
 
 #navigation {
   background-color:#504965;
+  position:absolute;
+  z-index:99999999;
 }
 
-#navigation a {
+#navigation a, .our-footer a {
   color:#F4DACD;
 }
 
-#navigation a.nav-item:hover {
+#navigation a.nav-item:hover, .our-footer a:hover {
   color:#F38676;
+  text-decoration:none;
 }
 
 .navbar-nav .btn {
@@ -26,15 +29,39 @@ width: 100%;
   width:90px;
 }
 
-.navbar-nav .btn:hover, .navbar-nav .btn:focus {
+
+
+.get-started {
+    background-color:#C55C79;
+    color:#F4DACD;
+}
+
+.navbar-nav .btn:hover, .navbar-nav .btn:focus, .get-started:hover, .get-started:focus {
   color:#F4DACD;
   background-color:#ac405e;
 }
 
 #welcome {
-    padding:100px;
+    padding:50px;
+    padding-top:150px;
     height:100px;
-    width:500px;
-    color:#F38676;
+    width:75%;
+    font-size:50px;
+    color:#C55C79;
     text-align:center;
+    line-height:1;
+}
+
+.subtitle {
+    color:#F38676;
+    font-size:25px;
+}
+
+.our-footer{
+    background-color:#504965;
+    color:#F4DACD;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 9rem;
 }
