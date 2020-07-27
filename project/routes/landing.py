@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, session, redirect, url_for
 from project import mongo
+from datetime import datetime
 landing = Blueprint('landing', __name__)
 
 
@@ -13,5 +14,5 @@ def tester(): #TODO:make this a real name
             return(redirect(url_for('user.setup')))
         return(render_template('loggedin.html'))
     else:
-        return(render_template('notloggedin.html'))
-    return(render_template('base.html'))
+        return(render_template('notloggedin.html', time = datetime.now()))
+    return(render_template('base.html', time = datetime.now()))

@@ -2,9 +2,13 @@ body {
   font-family: 'Nunito', sans-serif;
 }
 
+.stickyHeader {
+position: fixed;
+width: 100%;
+}
+
 #navigation {
   background-color:#504965;
-  position:fixed;
 }
 
 #navigation a {
@@ -28,9 +32,9 @@ body {
 }
 
 #welcome {
-    position:absolute;
-    color:pink;
-    margin-top:100px;
-    padding-left:100px;
+    padding:100px;
+    height:100px;
+    width:500px;
+    color:#F38676;
     text-align:center;
 }
