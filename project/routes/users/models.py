@@ -1,19 +1,21 @@
 from project import mongo, bcrypt
+import uuid
 
-
+users = mongo.db.users
 class User: # user class to handle database stuff involving user
-    users = mongo.db.users
-    def __init__(self, username, password):
+
+    def __init__(self, username, password, unique):
         self.username = username
         self.name = None
         self.studenttype = None
         self.contact = None
         self.skills = None
+        self.unique = unique
         self.password = bcrypt.generate_password_hash(password).decode('UTF-8')
 
     def pushdb(self):
         global users
-        users.insert({'username': self.username, 'name': self.name, 'password': self.password })
+        users.insert({'username': self.username, 'name': self.name, 'password': self.password, 'unique': self.unique})
 
 
     @classmethod
@@ -21,7 +23,7 @@ class User: # user class to handle database stuff involving user
         global users
         filt = {'username': username}
         builder = {'name': name, 'type': studenttype, 'contact':contact, 'skills':skills}
-        users.update_one(filt,builder )
+        users.update_one(filt, builder )
 
     @classmethod
     def authenticate(cls, username, password):
