@@ -1,0 +1,53 @@
+{% extends 'loggedin.html' %}
+
+{% block content %}
+<form method="POST" action="{{url_for('user.setup')}}">
+  {{ form.csrf_token }}
+  <p>{{ form.name(placeholder="name") }}
+    <span>
+      {% if form.name.errors %}
+        {% for error in form.name.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+  <p>
+
+
+    {{ form.studenttype }}
+    <span>
+      {% if form.studenttype.errors %}
+        {% for error in form.studenttype.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+
+
+ {{ form.contact }}
+    <span>
+      {% if form.contact.errors %}
+        {% for error in form.contact.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+
+
+    {{ form.skills }}
+    <span>
+      {% if form.skills.errors %}
+        {% for error in form.skills.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+
+
+  <button type="submit">Finish setup!</button>
+</form>
+{% endblock %}

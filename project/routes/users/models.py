@@ -19,10 +19,15 @@ class User: # user class to handle database stuff involving user
 
 
     @classmethod
-    def addmore(cls, username, name, studenttype, contact, skills): #TODO fix this jank
+    def addmore(cls, unique, data): #TODO fix this jank
         global users
-        filt = {'username': username}
-        builder = {'name': name, 'type': studenttype, 'contact':contact, 'skills':skills}
+
+        name = data['name']
+        studenttype = data['studenttype']
+        contact = data['contact']
+        skills = data['skills']
+        filt = {'unique': unique}
+        builder = {'$set': {'name': name, 'type': studenttype, 'contact':contact, 'skills':skills}}
         users.update_one(filt, builder )
 
     @classmethod
