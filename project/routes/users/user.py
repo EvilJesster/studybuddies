@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
 from project.routes.users.forms import UserForm, InfoForm
 from project.routes.users.models import User
+from datetime import datetime
 import uuid
 from project import mongo
 user = Blueprint('user', __name__)
@@ -23,7 +24,7 @@ def signup():
             return redirect(url_for('landing.tester'))
         flash( 'That username already exists! Try logging in.')
         return(redirect(url_for('user.login')))
-    return render_template('signup.html', form=form)
+    return render_template('signup.html', form=form, time = datetime.now())
 
 
 

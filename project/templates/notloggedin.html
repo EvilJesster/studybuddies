@@ -23,12 +23,16 @@
 {% endblock %}
 
 {%  block content %}
-    <div class="container-lg" style="display:flex;justify-content:center;position:relative;">
+    <div id="background">
+    <div class="container-lg" id="bg-contain" style="z-index:9999">
+        {%  block inner_content %}
         <div id="welcome">
             <b>Welcome!</b><br/>
             <span class="subtitle">Expand your education by getting connected to other students around the world.</span>
             <br/><br/>
             <a href="/signup"><button type="button" class="btn get-started btn-lg">Get started</button></a>
         </div>
+        {% endblock %}
+    </div>
     </div>
 {% endblock %}
