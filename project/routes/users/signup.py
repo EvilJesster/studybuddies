@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
-import bcrypt
+from project import bcrypt
 from project.routes.database import mongo
 signup = Blueprint('signup', __name__)
 
