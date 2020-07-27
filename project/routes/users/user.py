@@ -3,12 +3,12 @@ from project.routes.users.forms import UserForm
 from project.routes.users.models import User
 
 from project import mongo
-signup = Blueprint('signup', __name__)
+user = Blueprint('user', __name__)
 
 
 
-@signup.route('/signup', methods=['POST', 'GET'])
-def signupp():
+@user.route('/signup', methods=['POST', 'GET'])
+def signup():
     form = UserForm(request.form)
     if request.method == 'POST' and form.validate():
         users = mongo.db.users
@@ -19,5 +19,18 @@ def signupp():
             session['username'] = form.data['username'] #in theory should eventually make this secur
             return redirect(url_for('landing.tester'))
         flash( 'That username already exists! Try logging in.')
-        return(redirect(url_for('login')))
+        return(redirect(url_for('user.login')))
     return render_template('signup.html', form=form)
+
+
+
+@user.route('/login', methods=['GET', 'POST'])
+def login():
+    form = UserForm(request.form)
+    if(request.method == 'POST' and form.validate()):
+        print('step1')
+        if(User.authenticate(form.data['username'], form.data['password'])):
+            return(redirect(url_for('landing.tester')))
+        return redirect(url_for('user.login'))
+        #TODO: return to this and fix it so it properly sends you to sign up n stuff
+    return render_template('login.html', form=form)

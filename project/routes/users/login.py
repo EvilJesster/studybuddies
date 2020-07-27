@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
-from project.routes.database import mongo
+from project import mongo
 login = Blueprint('login', __name__)
 
 
