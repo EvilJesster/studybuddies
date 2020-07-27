@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template
-from .database import mongo
+from flask import Blueprint, render_template, request, session, redirect, url_for
+from routes.database import mongo
 login = Blueprint('login', __name__)
 
 
 
-@login.route('/login', methods=['GET', 'POST'])
+@login.route('/login', methods=[ 'POST'])
 
 def login():
     users = mongo.db.userinfo

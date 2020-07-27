@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_bcrypt import Bcrypt
 from routes.database import mongo
 from routes.landing import landing
 
@@ -9,3 +10,4 @@ app.debug = True
 #app.config.from_pyfile('Studybuddies-private/config.py')
 app. register_blueprint(landing)
 mongo.init_app(app)
+bcrypt = Bcrypt(app)
