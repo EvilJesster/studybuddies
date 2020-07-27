@@ -26,7 +26,7 @@
   </p>
 
 
- {{ form.contact }}
+ {{ form.contact(placeholder="email") }}
     <span>
       {% if form.contact.errors %}
         {% for error in form.contact.errors %}
@@ -59,7 +59,7 @@
   </p>
 
 
-    {{ form.pfp }}
+    {{ form.pfp(placeholder="url to picture for profile picture") }}
     <span>
       {% if form.pfp.errors %}
         {% for error in form.pfp.errors %}

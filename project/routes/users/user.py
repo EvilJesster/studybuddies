@@ -14,11 +14,11 @@ def signup():
     if request.method == 'POST' and form.validate():
         existing_user = users.find_one({'username': request.form['username']}) #check if the username is in use
         if existing_user is None:
-            holdunique = uuid.uuid4().hex
-            new_user = User(form.data['username'], form.data['password'], holdunique)
-            new_user.pushdb()
+            holdunique = uuid.uuid4().hex  #generate unique identifier to misuse
+            new_user = User(form.data['username'], form.data['password'], holdunique) #create user
+            new_user.pushdb() #push user to db
             session['username'] = form.data['username'] #TODO: secure sessions
-            session['unique'] = holdunique
+            session['unique'] = holdunique #currently using the unique id for "secure" sessions
             session['lin'] = True
             return redirect(url_for('landing.tester'))
         flash( 'That username already exists! Try logging in.')
