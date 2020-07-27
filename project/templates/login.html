@@ -1,14 +1,6 @@
 {% extends 'notloggedin.html' %}
 {% block content %}
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class=flashes>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        {% endif %}
-    {% endwith %}
+
     <form method="POST" action="{{url_for('user.login')}}">
   {{ form.csrf_token }}
   <p>{{ form.username(placeholder="username") }}

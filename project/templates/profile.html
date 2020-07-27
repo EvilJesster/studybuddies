@@ -1,0 +1,26 @@
+{% extends 'loggedin.html' %}
+{% block content %}
+    <img src:="{{ info['pfp'] }}" width="200px">
+    <br>
+    {{ info['name'] }}
+    <br>
+    {{ info['username'] }}
+    <br>
+    {{ info['type'] }}
+    <br>
+    {{ info['contact'] }}
+    <br>
+    strengths
+    <ul>
+    {% for i in info['strengths'] %}
+        <li>{{ i }}</li>
+    {% endfor %}
+    </ul>
+    <br>
+        weaknesses
+    <ul>
+    {% for i in info['weaknesses'] %}
+        <li>{{ i }}</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

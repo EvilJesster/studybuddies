@@ -36,17 +36,38 @@
     </span>
   </p>
 
-
-    {{ form.skills }}
+    <h1>strengths</h1>
+    {{ form.strengths }}
     <span>
-      {% if form.skills.errors %}
-        {% for error in form.skills.errors %}
+      {% if form.strengths.errors %}
+        {% for error in form.strengths.errors %}
           {{ error }}
         {% endfor %}
       {% endif %}
     </span>
   </p>
 
+<h1> weaknesses</h1>
+    {{ form.weaknesses }}
+    <span>
+      {% if form.weaknesses.errors %}
+        {% for error in form.weaknesses.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
+
+
+    {{ form.pfp }}
+    <span>
+      {% if form.pfp.errors %}
+        {% for error in form.pfp.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span>
+  </p>
 
   <button type="submit">Finish setup!</button>
 </form>

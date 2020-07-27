@@ -9,7 +9,8 @@ class User: # user class to handle database stuff involving user
         self.name = None
         self.studenttype = None
         self.contact = None
-        self.skills = None
+        self.strengths = None
+        self.weaknesses = None
         self.unique = unique
         self.password = bcrypt.generate_password_hash(password).decode('UTF-8')
 
@@ -25,9 +26,12 @@ class User: # user class to handle database stuff involving user
         name = data['name']
         studenttype = data['studenttype']
         contact = data['contact']
-        skills = data['skills']
+        strengths = data['strengths']
+        weaknesses = data['weaknesses']
+        pfp = data['pfp']
         filt = {'unique': unique}
-        builder = {'$set': {'name': name, 'type': studenttype, 'contact':contact, 'skills':skills}}
+        builder = {'$set': {'name': name, 'type': studenttype, 'contact':contact, 'strengths':strengths,
+                            'weaknesses':weaknesses,  'pfp': pfp}}
         users.update_one(filt, builder )
 
     @classmethod
