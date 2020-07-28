@@ -3,6 +3,8 @@ html, body {
   height:100vh;
     background-image:url('https://i.imgur.com/AQfn8nR.jpg');
     background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .stickyHeader {
