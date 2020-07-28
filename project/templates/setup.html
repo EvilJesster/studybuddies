@@ -1,73 +1,31 @@
 {% extends 'loggedin.html' %}
 
 {% block content %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 <form method="POST" action="{{url_for('user.setup')}}">
   {{ form.csrf_token }}
-  <p>{{ form.name(placeholder="name") }}
-    <span>
-      {% if form.name.errors %}
-        {% for error in form.name.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </span>
-  </p>
-  <p>
+    {{ form.userinfo }}
+    {{ form.math }} <!-- these are teh subjects to put in the tabs -->
+    {{ form.business }}
+    {{ form.science }}
+    {{ form.engineering }}
+    {{ form.humanities }}
+    {{ form.art }}
+{#   {% for i in form %}#}
+{##}
+{#    {{ i }}#}
+{#    <br>#}
+{##}
+{#{% endfor %}#}
+</p>
 
-
-    {{ form.studenttype }}
-    <span>
-      {% if form.studenttype.errors %}
-        {% for error in form.studenttype.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </span>
-  </p>
-
-
- {{ form.contact(placeholder="email") }}
-    <span>
-      {% if form.contact.errors %}
-        {% for error in form.contact.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </span>
-  </p>
-
-    <h1>strengths</h1>
-    {{ form.strengths }}
-    <span>
-      {% if form.strengths.errors %}
-        {% for error in form.strengths.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </span>
-  </p>
-
-<h1> weaknesses</h1>
-    {{ form.weaknesses }}
-    <span>
-      {% if form.weaknesses.errors %}
-        {% for error in form.weaknesses.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </span>
-  </p>
-
-
-    {{ form.pfp(placeholder="url to picture for profile picture") }}
-    <span>
-      {% if form.pfp.errors %}
-        {% for error in form.pfp.errors %}
-          {{ error }}
-        {% endfor %}
-      {% endif %}
-    </span>
-  </p>
 
   <button type="submit">Finish setup!</button>
 </form>
