@@ -12,7 +12,7 @@
 <form method="POST" action="{{url_for('user.setup')}}">
   {{ form.csrf_token }}
     {{ form.userinfo }}
-    {{ form.math }}
+    {{ form.math }} <!-- these are teh subjects to put in the tabs -->
     {{ form.business }}
     {{ form.science }}
     {{ form.engineering }}
