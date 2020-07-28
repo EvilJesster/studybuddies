@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SelectField, SelectMultipleField
+from wtforms import StringField, PasswordField, SelectField, SelectMultipleField, FormField, FieldList
 from wtforms.validators import DataRequired, Email, URL
 
 
@@ -18,7 +18,7 @@ class InfoForm(FlaskForm):
     #
     # strengths = SelectMultipleField('areas strong in', choices=skillList)
     # weaknesses = SelectMultipleField('areas weak in', choices=skillList)
-    pfp = StringField('url to your pfp', validators=[DataRequired(), URL() ])
+   # pfp = StringField('url to your pfp', validators=[ URL() ]) We'll do this one later
 
 
 class MathForm(FlaskForm):
@@ -60,4 +60,11 @@ class ArtForm(FlaskForm):
     strengths = SelectMultipleField('areas strong in', choices=sublist)
     weaknesses = SelectMultipleField('areas weak in', choices=sublist)
 
-
+class SetupForm(FlaskForm):
+    userinfo = FormField(InfoForm)
+    math = FormField(MathForm)
+    business = FormField(BusinessForm)
+    science = FormField(ScienceForm)
+    engineering = FormField(EngineeringForm)
+    humanities = FormField(HumanitiesForm)
+    art = FormField(ArtForm)
