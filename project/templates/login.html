@@ -1,9 +1,15 @@
 {% extends 'notloggedin.html' %}
-{% block content %}
 
+{% block styling %}
+    <link rel="stylesheet" type="text/css" href="static/css/forms.css?q={{ time }}" />
+{% endblock %}
+
+{% block inner_content %}
+<div class="container" id="formbox">
+    <h2>Log in</h2>
     <form method="POST" action="{{url_for('user.login')}}">
   {{ form.csrf_token }}
-  <p>{{ form.username(placeholder="username") }}
+  <p>{{ form.username(placeholder="Username") }}
     <span>
       {% if form.username.errors %}
         {% for error in form.username.errors %}
@@ -13,7 +19,7 @@
     </span>
   </p>
   <p>
-    {{ form.password(placeholder="password") }}
+    {{ form.password(placeholder="Password") }}
     <span>
       {% if form.password.errors %}
         {% for error in form.password.errors %}
@@ -22,6 +28,9 @@
       {% endif %}
     </span>
   </p>
-  <button type="submit">Log In!</button>
+  <button type="submit" class="submit">Log In!</button>
 </form>
+    <br/>
+    <div class="smalltext">Don't have an account? <a href="/signup">Sign up</a>.
+</div>
 {% endblock %}

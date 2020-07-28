@@ -76,6 +76,6 @@ def profile():
     global users
     if(session.get('lin') == True):
         holder = users.find_one({'unique': session.get('unique')})
-        return(render_template('profile.html', info=holder))
+        return(render_template('profile.html', info=holder, time = datetime.now()))
 
     return(redirect(url_for('landing.tester')))

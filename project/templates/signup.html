@@ -1,4 +1,9 @@
 {% extends 'notloggedin.html' %}
+
+{% block styling %}
+    <link rel="stylesheet" type="text/css" href="static/css/forms.css?q={{ time }}" />
+{% endblock %}
+
 {% block inner_content %}
 <div class="container" id="formbox">
     <h2>Sign up</h2>
@@ -23,7 +28,9 @@
         {% endif %}
         </span>
     </p>
-    <button type="submit">Sign Up!</button>
+    <button type="submit" class="submit">Sign Up!</button>
     </form>
+    <br/>
+    <div class="smalltext">Have an account? <a href="/login">Log in</a>.
 </div>
 {% endblock %}
