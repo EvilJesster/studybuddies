@@ -34,6 +34,7 @@ width: 100%;
     width:100%;
     height:100%;
     background-image:url('https://i.imgur.com/AQfn8nR.jpg');
+    background-size:cover;
     z-index:-9999999999;
 }
 
@@ -66,17 +67,6 @@ width: 100%;
     line-height:1;
 }
 
-#formbox{
-    padding:50px;
-    padding-top:150px;
-    height:100px;
-    width:75%;
-    font-size:20px;
-    color:#C55C79;
-    text-align:center;
-    line-height:1;
-}
-
 .subtitle {
     color:#F4DACD;
     font-size:25px;
@@ -84,9 +74,10 @@ width: 100%;
 
 .our-footer{
     background-color:#504965;
+    margin-top:-50px;
     color:#F4DACD;
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 7rem;
+    z-index:999999
 }
