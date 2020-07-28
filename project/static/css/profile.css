@@ -1,9 +1,11 @@
 #bg-contain {
     display:flex;
-    justify-content:center;
-    align-items: center;
+    align-items: center; 
+    justify-content: center; 
+    flex-direction: column;
     position:relative;
     width:100%;
+    height:100%;
     z-index:999999;
 }
 
@@ -34,5 +36,33 @@
 .info-box {
     width:480px;
     margin-left:10px;
-    padding:20px;
+    padding-left:20px;
+}
+
+h1 {
+    font-weight:700;
+    line-height:1.5;
+}
+
+h3 {
+    line-height:1;
+}
+
+h5 {
+    line-height:2;
+    font-size:15px;
+    text-transform:uppercase;
+}
+
+.info-box button {
+    border-color:#C55C79;
+    color:#C55C79;
+    font-weight:700;
+    margin-right:10px;
+}
+
+.info-box button:hover, .info-box button:focus, .info-box button:active {
+    background-color:#C55C79;
+    border-color:#C55C79;
+    color:#F4DACD;
 }
