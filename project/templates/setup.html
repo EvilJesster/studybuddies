@@ -1,14 +1,13 @@
 {% extends 'loggedin.html' %}
 
+{% block styling %}
+    <link rel="stylesheet" type="text/css" href="static/css/forms.css?q={{ time }}" />
+{% endblock %}
+
 {% block content %}
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<div id="bg-contain">
+<div id="formbox">
+
 <form method="POST" action="{{url_for('user.setup')}}">
   {{ form.csrf_token }}
     {{ form.userinfo }}
@@ -29,4 +28,6 @@
 
   <button type="submit">Finish setup!</button>
 </form>
+</div> <!-- end formbox -->
+</div> <!-- end bg contain-->
 {% endblock %}
