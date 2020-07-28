@@ -26,11 +26,27 @@
   </head>
 
     <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg navbar-light stickyHeader" id="navigation">
+        <a class="navbar-brand" href="/">
+            <img src="/docs/4.5/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+    Study Buddies
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content:flex-end">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link active" href="/">
+                    Home <span class="sr-only">(current)</span>
+                </a>
+                <a class="nav-item nav-link" href="#">Subjects</a>
+                <a class="nav-item nav-link" href="#">About</a>
+                {% block nav %}{% endblock %}
+            </div>
+        </div>
+        </nav>
 
-          {% block nav %}
-        <!-- NAVIGATION -->
-
-        {% endblock %}
             <!--this stuff is so that flashed messages show up  -->
                 {% with messages = get_flashed_messages() %}
             {% if messages %}
