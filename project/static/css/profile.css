@@ -1,0 +1,38 @@
+#bg-contain {
+    display:flex;
+    justify-content:center;
+    align-items: center;
+    position:relative;
+    width:100%;
+    z-index:999999;
+}
+
+.pfp {
+    object-fit: cover;
+    width: 150px;
+    height: 150px;
+    border-radius:10px;
+}
+
+.profile-contain {
+    background-color:rgba(244, 218, 205, 0.7);
+    padding:50px;
+    width:700px;
+    align-self:center;
+    border-radius:10px;
+    line-height:1;
+}
+
+.profile-header {
+    width:600px;
+    padding:20px;
+    height:190px;
+    background-color:#F4DACD;
+    display:flex;
+}
+
+.info-box {
+    width:480px;
+    margin-left:10px;
+    padding:20px;
+}
