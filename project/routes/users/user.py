@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
-from project.routes.users.forms import UserForm, InfoForm
+from project.routes.users.forms import UserForm, InfoForm, MathForm,BusinessForm, ScienceForm, EngineeringForm, HumanitiesForm, ArtForm
 from project.routes.users.models import User
 from datetime import datetime
 import uuid
@@ -49,12 +49,19 @@ def login():
 @user.route('/setup', methods=['GET', 'POST'])
 def setup():
     global users
-    form = InfoForm(request.form)
+    infoform = InfoForm(request.form)
+    mathform = MathForm(request.form)
+    businessform = BusinessForm(request.form)
+    scienceform = ScienceForm(request.form)
+    engineeringform = EngineeringForm(request.form)
+    humanitiesform = HumanitiesForm(request.form)
+    artform = ArtForm(request.form)
     if(request.method =='POST' and form.validate()):
         holder = users.find_one({'unique': session.get('unique')})
         User.addmore(session.get('unique'), form.data)
         return(redirect(url_for('landing.tester')))
-    return(render_template('setup.html', form=form))
+    return(render_template('setup.html', info=infoform, math=mathform, business=businessform, science=scienceform,
+                           engineering=engineeringform, humanities=humanitiesform, art=artform))
 
 
 
