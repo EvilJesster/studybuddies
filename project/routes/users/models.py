@@ -22,16 +22,21 @@ class User: # user class to handle database stuff involving user
     @classmethod
     def addmore(cls, unique, data): #TODO fix this jank
         global users
-
-        name = data['name']
-        studenttype = data['studenttype']
-        contact = data['contact']
-        strengths = data['strengths']
-        weaknesses = data['weaknesses']
-        pfp = data['pfp']
+        print(data)
+        uinfo = data['userinfo']
+        name = uinfo['name']
+        studenttype = uinfo['studenttype']
+        contact = uinfo['contact']
+        math = data['math']
+        business = data['business']
+        science = data['science']
+        engineering = data['engineering']
+        humanities = data['humanities']
+        art = data['art']
         filt = {'unique': unique}
-        builder = {'$set': {'name': name, 'type': studenttype, 'contact':contact, 'strengths':strengths,
-                            'weaknesses':weaknesses,  'pfp': pfp}}
+        builder = {'$set': {'name': name, 'type': studenttype, 'contact':contact,
+                            'math': math, 'business': business, 'science': science, 'engineering': engineering,
+                            'humanities': humanities, 'art': art}}
         users.update_one(filt, builder )
 
     @classmethod
