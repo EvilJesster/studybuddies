@@ -10,12 +10,18 @@
             <div class="profile-header">
                 <img src="{{ info['pfp'] }}" class="pfp"/>
                 <div class="info-box">
-                    <h1>{{ info['name'] }}</h1>
-                    <h3>@{{ info['username'] }}</h3>
+                    <h5>&nbsp;<i class="fas fa-school"></i>&nbsp;
+                    {% if info['type'] == 'C'%}
+                        College Student
+                    {% else %}
+                        High School Student
+                    {% endif %}
+                    </h5>
+                    <h1>{{ info['name'] }} <small>(@{{ info['username'] }})</small></h1>
+                    <button type="button" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i> &nbsp;Follow</button>
+                    <button type="button" class="btn btn-outline-primary"><i class="fas fa-comment-alt"></i> &nbsp;Message</button>
                 </div>
             </div>
-            <br>
-            {{ info['type'] }}
             <br>
             {{ info['contact'] }}
             <br>
