@@ -7,6 +7,8 @@ html, body {
   background-attachment: fixed;
 }
 
+/* NAVIGATION */
+
 .stickyHeader {
 position: fixed;
 width: 100%;
@@ -34,7 +36,7 @@ width: 100%;
   width:90px;
 }
 
-
+/* CONTAINERS */
 #bg-contain {
     display:flex;
     justify-content:center;
@@ -43,6 +45,19 @@ width: 100%;
     width:100%;
     z-index:999999;
 }
+
+#contain {
+    background-color:rgba(244, 218, 205, 0.7);
+    padding:50px;
+    width:700px;
+    margin-top:100px;
+    margin-bottom:50px;
+    align-self:center;
+    border-radius:10px;
+    line-height:1;
+}
+
+/* WELCOME */
 
 .get-started {
     background-color:#C55C79;
