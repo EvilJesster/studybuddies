@@ -47,4 +47,10 @@
             </form>
         </div>
     </div>
+    {% if results %}
+        {% for i in results %}
+            {{ i[0].username }}
+            {{ i[1] }} {# this is the overlap score #}
+        {% endfor %}
+    {% endif %}
 {% endblock %}

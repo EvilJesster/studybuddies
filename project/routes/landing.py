@@ -12,7 +12,7 @@ def tester(): #TODO:make this a real name
         holder = users.find_one({'unique': session.get('unique')})
         if(holder['name'] == None):
             return(redirect(url_for('user.setup')))
-        return(render_template('loggedin.html', user = holder['name']))
+        return(render_template('loggedin.html', user = holder['name'], time=datetime.now()))
     else:
         return(render_template('notloggedin.html', time = datetime.now()))
     return(render_template('base.html', time = datetime.now()))
