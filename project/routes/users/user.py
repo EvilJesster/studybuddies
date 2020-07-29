@@ -85,8 +85,9 @@ def search():
     if(session.get('lin') == True):
         if (request.method == 'POST' and form.validate()):
             #display user in order of matches with search
+            print(form.data)
             if(form.data['uname'] != None):
-                pfound = users.find_one({'form.data.uname'})
+                pfound = users.find_one({'username': form.data['uname']})
             else:
                 udump = users.find()
                 print(type(udump))
