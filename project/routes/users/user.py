@@ -89,26 +89,29 @@ def search():
             if(form.data['uname'] != ''):
                 pfound = users.find_one({'username': form.data['uname']})
             else:
-                udump = users.find()
+                filt = {'name':{'$ne': None}}
+                udump = users.find(filt)
                 print(type(udump))
-                holder = {}
+                smatcount = {} #holds the matches counter for results
                 for i in udump:
-                    holder[i['_id']] = 0
+                    smatcount[i['_id']] = 0
 
-                    holder[i['_id']] += len(set(i['art']['strengths']) & set(form.data['art']['strengths']))
-                    holder[i['_id']] += len(set(i['art']['weaknesses']) & set(form.data['art']['weaknesses']))
+                    smatcount[i['_id']] += len(set(i['art']['strengths']) & set(form.data['art']['strengths']))
+                    smatcount[i['_id']] += len(set(i['art']['weaknesses']) & set(form.data['art']['weaknesses']))
 
-                    holder[i['_id']] += len(set(i['business']['strengths']) & set(form.data['business']['strengths']))
-                    holder[i['_id']] += len(set(i['business']['weaknesses']) & set(form.data['business']['weaknesses']))
+                    smatcount[i['_id']] += len(set(i['business']['strengths']) & set(form.data['business']['strengths']))
+                    smatcount[i['_id']] += len(set(i['business']['weaknesses']) & set(form.data['business']['weaknesses']))
 
-                    holder[i['_id']] += len(set(i['engineering']['strengths']) & set(form.data['engineering']['strengths']))
-                    holder[i['_id']] += len(set(i['engineering']['weaknesses']) & set(form.data['engineering']['weaknesses']))
-                    holder[i['_id']] += len(set(i['humanities']['strengths']) & set(form.data['humanities']['strengths']))
-                    holder[i['_id']] += len(set(i['humanities']['weaknesses']) & set(form.data['humanities']['weaknesses']))
-                    holder[i['_id']] += len(set(i['math']['strengths']) & set(form.data['math']['strengths']))
-                    holder[i['_id']] += len(set(i['math']['weaknesses']) & set(form.data['math']['weaknesses']))
-                print(holder)
-
+                    smatcount[i['_id']] += len(set(i['engineering']['strengths']) & set(form.data['engineering']['strengths']))
+                    smatcount[i['_id']] += len(set(i['engineering']['weaknesses']) & set(form.data['engineering']['weaknesses']))
+                    smatcount[i['_id']] += len(set(i['humanities']['strengths']) & set(form.data['humanities']['strengths']))
+                    smatcount[i['_id']] += len(set(i['humanities']['weaknesses']) & set(form.data['humanities']['weaknesses']))
+                    smatcount[i['_id']] += len(set(i['math']['strengths']) & set(form.data['math']['strengths']))
+                    smatcount[i['_id']] += len(set(i['math']['weaknesses']) & set(form.data['math']['weaknesses']))
+                print(smatcount)
+                for key, value in smatcount.items():
+                    print(users.find_one({'_id': key}), value)
+                    
         return(render_template('search.html', form=form, time=datetime.now()))
     return(redirect(url_for('user.login')))
 
