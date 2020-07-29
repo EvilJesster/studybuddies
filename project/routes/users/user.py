@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
-from project.routes.users.forms import UserForm, InfoForm, MathForm,BusinessForm, ScienceForm, EngineeringForm, HumanitiesForm, ArtForm, SetupForm
+from project.routes.users.forms import UserForm, SetupForm, SearchForm
 from project.routes.users.models import User
 from datetime import datetime
 import uuid
@@ -32,10 +32,11 @@ def signup():
 def login():
     global users
     form = UserForm(request.form)
+    if (session['lin'] == True):
+        return(redirect(url_for('landing.tester')))
     if(request.method == 'POST' and form.validate()):
         if(User.authenticate(form.data['username'], form.data['password'])):
             session['username'] = form.data['username'] #TODO: secure sessions, maybe use unique id for this?
-
             temphold =  users.find_one({'username': form.data['username']})
             session['unique'] = temphold['unique']
             session['lin'] = True
@@ -76,3 +77,22 @@ def profile():
         return(render_template('profile.html', info=holder, time = datetime.now()))
 
     return(redirect(url_for('landing.tester')))
+
+@user.route('/search', methods = ['GET', 'POST'])
+def search():
+    global users
+    form = SearchForm
+    if(session.get('lin') == True):
+        if (request.method == 'POST' and form.validate()):
+            #display user in order of matches with search
+            if(form.data['uname'] != None):
+                pfound = users.find_one({'form.data.uname'})
+            else:
+                udump = users.find()
+                print(type(udump))
+                for i in udump:
+                    print(i)
+        return(render_template('search.html', form=form))
+    return(redirect(url_for('user.login')))
+
+

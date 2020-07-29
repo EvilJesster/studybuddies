@@ -70,3 +70,14 @@ class SetupForm(FlaskForm):
     engineering = FormField(EngineeringForm)
     humanities = FormField(HumanitiesForm)
     art = FormField(ArtForm)
+
+
+
+class SearchForm(FlaskForm):
+    uname = StringField('Username')
+    math = FormField(MathForm)
+    business = FormField(BusinessForm)
+    science = FormField(ScienceForm)
+    engineering = FormField(EngineeringForm)
+    humanities = FormField(HumanitiesForm)
+    art = FormField(ArtForm)
