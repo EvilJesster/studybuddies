@@ -43,7 +43,7 @@ def login():
         flash('invalid username or password')
         return redirect(url_for('user.login'))
         #TODO: return to this and fix it so it properly sends you to sign up n stuff
-    return render_template('login.html', form=form)
+    return render_template('login.html', form=form, time = datetime.now())
 
 
 @user.route('/setup', methods=['GET', 'POST'])
