@@ -32,7 +32,7 @@ def signup():
 def login():
     global users
     form = UserForm(request.form)
-    if (session['lin'] == True):
+    if (session.get('lin') == True):
         return(redirect(url_for('landing.tester')))
     if(request.method == 'POST' and form.validate()):
         if(User.authenticate(form.data['username'], form.data['password'])):
