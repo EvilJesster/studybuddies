@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
 {% block nav %}
                 <a class="nav-item nav-link" href="#">Search</a>
-                <!-- display profile name, dropdown to profile and logout.. maybe settings too to update? are we doing that?-->
-                <a class="nav-item nav-link" href="{{ url_for('user.profile') }}">Profile</a>
-                <a class="nav-item nav-link" href="{{ url_for('user.logout') }}">Log out</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <!-- {{user}} -->
+                        My Account
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ url_for('user.profile') }}">Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ url_for('user.logout') }}">Log out</a>
+                    </div>
+                </li>
 {% endblock %}
 
 {%  block content %}
