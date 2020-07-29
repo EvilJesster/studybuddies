@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block nav %}
-                <a class="nav-item nav-link" href="#">Search</a>
+                <a class="nav-item nav-link" href="{{ url_for('user.search') }}">Search</a>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <!-- {{user}} -->
