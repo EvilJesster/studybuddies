@@ -16,7 +16,7 @@ class User: # user class to handle database stuff involving user
 
     def pushdb(self):
         global users
-        users.insert({'username': self.username, 'name': self.name, 'password': self.password, 'unique': self.unique})
+        users.insert({'username': self.username, 'name': self.name, 'password': self.password, 'unique': self.unique, 'pfp': "static/img/questionface.png"})
 
 
     @classmethod
@@ -39,6 +39,12 @@ class User: # user class to handle database stuff involving user
                             'humanities': humanities, 'art': art}}
         users.update_one(filt, builder )
 
+
+    @classmethod
+    def addpfp(cls, url, unique):
+        global users
+        filt = {'unique': unique}
+        users.update_one(filt, {'$set':{'pfp': url}})
     @classmethod
     def authenticate(cls, username, password):
         global users
