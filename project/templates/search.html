@@ -9,7 +9,7 @@
 {% block content %}
     <div class="container-lg" id="bg-contain">
         <div class="search-contain">
-            <form method="POST" action="{{ url_for('user.search' }}">
+            <form method="POST" action="{{ url_for('user.search' )}}">
                 {{ form.csrf_token }}
                 {{ form.uname }}
 
