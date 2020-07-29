@@ -74,9 +74,14 @@ def logout():
 @user.route('/profile')
 def profile():
     global users
-    if(session.get('lin') == True):
+    if (session.get('lin') == True):
         holder = users.find_one({'unique': session.get('unique')})
-        return(render_template('profile.html', info=holder, time = datetime.now()))
+        if (holder['name'] == None):
+            return (redirect(url_for('user.setup')))
+        if(session.get('lin') == True):
+            holder = users.find_one({'unique': session.get('unique')})
+            return(render_template('profile.html', info=holder, time = datetime.now()))
+    return(redirect(url_for('landing.tester')))
 
     return(redirect(url_for('landing.tester')))
 
@@ -111,8 +116,10 @@ def search():
                     smatcount[i['_id']][0] += len(set(i['math']['strengths']) & set(form.data['math']['strengths']))
                     smatcount[i['_id']][0] += len(set(i['math']['weaknesses']) & set(form.data['math']['weaknesses']))
                 print(smatcount)
+                results = []
                 for key, value in smatcount.items():
-                    print(users.find_one({'_id': key}), value)
+                    results.append([users.find_one({'_id': key}), value])
+                return(render_template('search.html', form=form, time=datetime.now(), results=results))
                     
         return(render_template('search.html', form=form, time=datetime.now()))
     return(redirect(url_for('user.login')))
