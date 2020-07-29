@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
-from project.routes.users.forms import UserForm, SetupForm, SearchForm, MathForm, BusinessForm, ScienceForm, EngineeringForm, HumanitiesForm, ArtForm
+from project.routes.users.forms import UserForm, SetupForm, SearchForm, PfpForm
 from project.routes.users.models import User
 from datetime import datetime
 import uuid
@@ -51,15 +51,17 @@ def login():
 def setup():
     global users
     form = SetupForm(request.form)
-    if(request.method=='POST'):
-        print(form.data)
-        print(form.validate())
-        print(form.errors)
-    if(request.method =='POST' and form.validate()):
-        holder = users.find_one({'unique': session.get('unique')})
-        User.addmore(session.get('unique'), form.data)
-        return(redirect(url_for('landing.tester')))
-    return(render_template('setup.html', form=form, time = datetime.now()))
+    # if(request.method=='POST'):
+    #     print(form.data)
+    #     print(form.validate())
+    #     print(form.errors)
+    if (session.get('lin') == True):
+        if(request.method =='POST' and form.validate()):
+            holder = users.find_one({'unique': session.get('unique')})
+            User.addmore(session.get('unique'), form.data)
+            return(redirect(url_for('landing.tester')))
+        return(render_template('setup.html', form=form, time = datetime.now()))
+    return(redirect(url_for('landing.tester')))
 
 
 
@@ -89,27 +91,39 @@ def search():
             if(form.data['uname'] != ''):
                 pfound = users.find_one({'username': form.data['uname']})
             else:
-                udump = users.find()
+                filt = {'name':{'$ne': None}}
+                udump = users.find(filt)
                 print(type(udump))
-                holder = {}
+                smatcount = {} #holds the matches counter for results
                 for i in udump:
-                    holder[i['_id']] = 0
+                    smatcount[i['_id']] = []
+                    smatcount[i['_id']].append(0)
+                    smatcount[i['_id']][0] += len(set(i['art']['strengths']) & set(form.data['art']['strengths']))
+                    smatcount[i['_id']][0] += len(set(i['art']['weaknesses']) & set(form.data['art']['weaknesses']))
 
-                    holder[i['_id']] += len(set(i['art']['strengths']) & set(form.data['art']['strengths']))
-                    holder[i['_id']] += len(set(i['art']['weaknesses']) & set(form.data['art']['weaknesses']))
+                    smatcount[i['_id']][0] += len(set(i['business']['strengths']) & set(form.data['business']['strengths']))
+                    smatcount[i['_id']][0] += len(set(i['business']['weaknesses']) & set(form.data['business']['weaknesses']))
 
-                    holder[i['_id']] += len(set(i['business']['strengths']) & set(form.data['business']['strengths']))
-                    holder[i['_id']] += len(set(i['business']['weaknesses']) & set(form.data['business']['weaknesses']))
-
-                    holder[i['_id']] += len(set(i['engineering']['strengths']) & set(form.data['engineering']['strengths']))
-                    holder[i['_id']] += len(set(i['engineering']['weaknesses']) & set(form.data['engineering']['weaknesses']))
-                    holder[i['_id']] += len(set(i['humanities']['strengths']) & set(form.data['humanities']['strengths']))
-                    holder[i['_id']] += len(set(i['humanities']['weaknesses']) & set(form.data['humanities']['weaknesses']))
-                    holder[i['_id']] += len(set(i['math']['strengths']) & set(form.data['math']['strengths']))
-                    holder[i['_id']] += len(set(i['math']['weaknesses']) & set(form.data['math']['weaknesses']))
-                print(holder)
-
+                    smatcount[i['_id']][0] += len(set(i['engineering']['strengths']) & set(form.data['engineering']['strengths']))
+                    smatcount[i['_id']][0] += len(set(i['engineering']['weaknesses']) & set(form.data['engineering']['weaknesses']))
+                    smatcount[i['_id']][0] += len(set(i['humanities']['strengths']) & set(form.data['humanities']['strengths']))
+                    smatcount[i['_id']][0] += len(set(i['humanities']['weaknesses']) & set(form.data['humanities']['weaknesses']))
+                    smatcount[i['_id']][0] += len(set(i['math']['strengths']) & set(form.data['math']['strengths']))
+                    smatcount[i['_id']][0] += len(set(i['math']['weaknesses']) & set(form.data['math']['weaknesses']))
+                print(smatcount)
+                for key, value in smatcount.items():
+                    print(users.find_one({'_id': key}), value)
+                    
         return(render_template('search.html', form=form, time=datetime.now()))
     return(redirect(url_for('user.login')))
 
 
+@user.route('/changepfp', methods=['GET', 'POST'])
+def changepfp():
+    form = PfpForm(request.form)
+    if (session.get('lin') == True):
+        if (request.method == 'POST' and form.validate()):
+            User.addpfp(form.data['pfp'], session.get('unique'))
+            return(redirect(url_for('user.profile')))
+        return render_template('updatepfp.html', form=form, time=datetime.now())
+    return(redirect(url_for('landing.tester')))

@@ -1,0 +1,25 @@
+{% extends 'loggedin.html' %}
+
+{% block styling %}
+    <link rel="stylesheet" type="text/css" href="static/css/forms.css?q={{ time }}" />
+    <link rel="stylesheet" type="text/css" href="static/css/search.css?q={{ time }}" />
+{% endblock %}
+
+{% block title %}Change PFP • {% endblock %}
+
+{% block content %}
+ <div class="container-lg" id="bg-contain">
+        <div class="search-contain">
+            <form method="POST" action="{{ url_for('user.changepfp' )}}">
+                {{ form.csrf_token }}
+                {{ form.pfp }}
+
+   <div align="center" style="margin-top:30px;">
+        <button type="submit">Search!</button>
+    </div>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}

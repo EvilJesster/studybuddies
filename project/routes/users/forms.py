@@ -81,3 +81,7 @@ class SearchForm(FlaskForm):
     engineering = FormField(EngineeringForm)
     humanities = FormField(HumanitiesForm)
     art = FormField(ArtForm)
+
+
+class PfpForm(FlaskForm):
+    pfp = StringField('url to your pfp', validators=[DataRequired(), URL()])
