@@ -5,17 +5,19 @@
     <link rel="stylesheet" type="text/css" href="static/css/search.css?q={{ time }}" />
 {% endblock %}
 
-{% block title %}Change PFP • {% endblock %}
+{% block title %}Change profile picture • {% endblock %}
 
 {% block content %}
  <div class="container-lg" id="bg-contain">
         <div class="search-contain">
+            <h2>Change profile picture</h2>
             <form method="POST" action="{{ url_for('user.changepfp' )}}">
                 {{ form.csrf_token }}
-                {{ form.pfp }}
-
+                <div style="display:flex;justify-content:center;">
+                    <div style="margin-right:20px;">{{ form.pfp }}</div>
+                    <button type="submit">Update</button>
+                </div>
    <div align="center" style="margin-top:30px;">
-        <button type="submit">Search!</button>
     </div>
             </form>
         </div>
