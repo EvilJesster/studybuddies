@@ -7,6 +7,13 @@ html, body {
   background-attachment: fixed;
 }
 
+*, *:hover{
+    
+     -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+}
+
 /* NAVIGATION */
 
 .stickyHeader {
@@ -20,8 +27,41 @@ width: 100%;
   z-index:99999999;
 }
 
-#navigation a, .our-footer a {
+#navigation a.nav-link, #navigation a.navbar-brand, .our-footer a {
   color:#F4DACD;
+}
+
+a.dropdown-item {
+    color:#C55C79;
+    padding-top:8px;
+    padding-bottom:8px;
+}
+
+a.dropdown-item:hover {
+    background-color:#F38676;
+    color:#F4DACD;
+}
+
+a.dropdown-item:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+a.dropdown-item:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.dropdown-menu {
+    background-color:#F4DACD;
+    border-radius:5px;
+    padding:0px;
+    overflow:none;
+}
+
+.dropdown-divider {
+    border-color:rgba(243, 135, 118, 0.5);
+    margin:0;
 }
 
 #navigation a.nav-item:hover, .our-footer a:hover {
