@@ -4,6 +4,8 @@
 <link rel="stylesheet" type="text/css" href="static/css/profile.css?q={{ time }}" />
 {% endblock %}
 
+{% block title %}{{ info['name'] }} • {% endblock %}
+
 {% block content %}
     <div class="container-lg" id="bg-contain">
         <div class="profile-contain">
@@ -17,27 +19,34 @@
                         High School Student
                     {% endif %}
                     </h5>
-                    <h1>{{ info['name'] }} <small>(@{{ info['username'] }})</small></h1>
+                    <h1>{{ info['name'] }}</h1>
+                     <h3>(@{{ info['username'] }})</h3>
                     <button type="button" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i> &nbsp;Follow</button>
                     <button type="button" class="btn btn-outline-primary"><i class="fas fa-comment-alt"></i> &nbsp;Message</button>
                 </div>
             </div>
+            <!--{{ info['contact'] }}-->
             <br>
-            {{ info['contact'] }}
-            <br>
-            strengths
-            <ul>
-            {% for i in info['strengths'] %}
-                <li>{{ i }}</li>
-            {% endfor %}
-            </ul>
-            <br>
-                weaknesses
-            <ul>
-            {% for i in info['weaknesses'] %}
-                <li>{{ i }}</li>
-            {% endfor %}
-            </ul>
+            <!--- can make these tabs but idk yet -->
+            <div id="skills">
+                <div id="strengths">
+                    <h2>strengths</h2>
+                    <ul>
+                    {% for i in info['strengths'] %}
+                        <li>{{ i }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div id="weaknesses">
+                    <h2>weaknesses</h2>
+                    <ul>
+                    {% for i in info['weaknesses'] %}
+                        <li>{{ i }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            
         </div>
     </div>
 {% endblock %}
