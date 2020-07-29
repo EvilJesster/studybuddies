@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
-from project.routes.users.forms import UserForm, SetupForm, SearchForm
+from project.routes.users.forms import UserForm, SetupForm, SearchForm, MathForm, BusinessForm, ScienceForm, EngineeringForm, HumanitiesForm, ArtForm
 from project.routes.users.models import User
 from datetime import datetime
 import uuid
@@ -81,7 +81,7 @@ def profile():
 @user.route('/search', methods = ['GET', 'POST'])
 def search():
     global users
-    form = SearchForm
+    form = SearchForm(request.form)
     if(session.get('lin') == True):
         if (request.method == 'POST' and form.validate()):
             #display user in order of matches with search
