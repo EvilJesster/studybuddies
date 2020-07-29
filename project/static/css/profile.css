@@ -3,7 +3,6 @@
     align-items: center; 
     justify-content: center; 
     flex-direction: column;
-    position:relative;
     width:100%;
     height:100%;
     z-index:999999;
@@ -20,6 +19,8 @@
     background-color:rgba(244, 218, 205, 0.7);
     padding:50px;
     width:700px;
+    margin-top:100px;
+    margin-bottom:50px;
     align-self:center;
     border-radius:10px;
     line-height:1;
@@ -41,15 +42,16 @@
 
 h1 {
     font-weight:700;
-    line-height:1.5;
+    line-height:1;
 }
 
 h3 {
     line-height:1;
+    font-size:20px;
 }
 
 h5 {
-    line-height:2;
+    line-height:1.5;
     font-size:15px;
     text-transform:uppercase;
 }
@@ -59,10 +61,52 @@ h5 {
     color:#C55C79;
     font-weight:700;
     margin-right:10px;
+    margin-top:5px;
 }
 
 .info-box button:hover, .info-box button:focus, .info-box button:active {
     background-color:#C55C79;
     border-color:#C55C79;
     color:#F4DACD;
+}
+
+/* SKILLS */
+
+#skills {
+    display:flex;
+    justify-content:space-between;
+}
+
+#skills h2 {
+    text-transform:uppercase;
+    color:#C55C79;
+    font-weight:700;
+    font-size:20px;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+#skills ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+#strengths, #weaknesses {
+    width:48.5%;
+    line-height:1.5;
+    font-size:17px;
+    background-color:#F4DACD;
+    padding:30px;
+}
+
+#strengths ul li::before {
+    content: "\f058";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 10px 0 0;
+}
+
+#weaknesses ul li::before {
+    content: "\f057";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 10px 0 0;
 }

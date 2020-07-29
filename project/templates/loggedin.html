@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
 {% block nav %}
+                <a class="nav-item nav-link" href="#">Search</a>
+                <!-- display profile name, dropdown to profile and logout.. maybe settings too to update? are we doing that?-->
                 <a class="nav-item nav-link" href="{{ url_for('user.profile') }}">Profile</a>
                 <a class="nav-item nav-link" href="{{ url_for('user.logout') }}">Log out</a>
 {% endblock %}
 
- {%  block content %}
+{%  block content %}
 
-    {% endblock %}
+{% endblock %}

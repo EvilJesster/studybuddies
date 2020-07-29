@@ -1,9 +1,13 @@
 html, body {
   font-family: 'Nunito', sans-serif;
-  height:100vh;
+  padding:0; margin:0; height:100%;
     background-image:url('https://i.imgur.com/AQfn8nR.jpg');
     background-size:cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
+
+/* NAVIGATION */
 
 .stickyHeader {
 position: fixed;
@@ -32,16 +36,28 @@ width: 100%;
   width:90px;
 }
 
-
+/* CONTAINERS */
 #bg-contain {
     display:flex;
     justify-content:center;
     align-items: center;
-    position:relative;
+    align-content:center;
     width:100%;
-    height:600px;
     z-index:999999;
 }
+
+#contain {
+    background-color:rgba(244, 218, 205, 0.7);
+    padding:50px;
+    width:700px;
+    margin-top:100px;
+    margin-bottom:50px;
+    align-self:center;
+    border-radius:10px;
+    line-height:1;
+}
+
+/* WELCOME */
 
 .get-started {
     background-color:#C55C79;
@@ -55,8 +71,8 @@ width: 100%;
 
 #welcome {
     padding:50px;
+    margin-top:100px;
     width:75%;
-    align-self:center;
     font-size:50px;
     color:#F4DACD;
     text-align:center;
@@ -68,6 +84,24 @@ width: 100%;
     font-size:25px;
 }
 
+/* FOOTER STUFF */
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 8rem;    /* Footer height */
+}
+
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 8rem;            /* Footer height */
+}
+
 .our-footer{
     background-color:#504965;
     color:#F4DACD;
@@ -75,4 +109,26 @@ width: 100%;
     width: 100%;
     position:absolute;
     z-index:999999
+}
+
+/* SCROLLBAR */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background:none;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #C55C79;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ac405e;
 }
