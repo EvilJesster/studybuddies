@@ -18,3 +18,7 @@
     border-radius:10px;
     line-height:1;
 }
+
+input #uname {
+    width:75%;
+}
