@@ -11,6 +11,10 @@ app = Flask(__name__, instance_relative_config=True)
 if(not is_prod):
     app.debug = True
     app.config.from_pyfile('newconfig.py')
+else:
+    app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', None)
+    app.config['MONGO_DBNAME'] = os.environ.get('MONGO_DBNAME', None)
+    app.config['MONGO_URI'] = os.environ.get('MONGO_URI', None)
 mongo = PyMongo(app)
 
 bcrypt = Bcrypt(app)
