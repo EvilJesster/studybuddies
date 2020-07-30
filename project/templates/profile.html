@@ -25,7 +25,7 @@
                      <h3>(@{{ info['username'] }})</h3>
                      <div style="display:flex;">
                          {% if ownpro %}
-                         <button type="button" class="btn btn-outline-primary"><i class="fas fa-users"></i> &nbsp;Follow List</button>
+                         <a href="{{ url_for('user.following') }}"><button type="button" class="btn btn-outline-primary"><i class="fas fa-users"></i> &nbsp;Follow List</button></a>
                         {% else %}
                         <form method="POST" action="{{url_for('user.other', page = info['username'] )}}">
                             <button type="submit" class="btn btn-outline-primary" name="follow" value="True"><i class="fas fa-user-plus"></i> &nbsp;Follow</button>
