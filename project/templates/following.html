@@ -3,6 +3,8 @@
 {% block styling %}
 <link rel="stylesheet" type="text/css" href="static/css/profile.css?q={{ time }}" />
 <link rel="stylesheet" type="text/css" href="static/css/search.css?q={{ time }}" />
+<style type="text/css">
+</style>
 {% endblock %}
 
 {% block title %}Following • {% endblock %}
@@ -10,10 +12,10 @@
 {% block content %}
     <div class="container-lg" id="bg-contain">
         <div class="profile-contain">
-            <h2>Following</h2>
+            <h2 align="center" style="padding-bottom:10px;">Following</h2>
             {% for user in following %}
-                <div class="result">
-                    {{ user }}
+                <div class="result" style="font-size:20px;">
+                    <a href="{{url_for('user.other', page = user)}}">{{ user }}</a>
                 </div>
             {% endfor %}
         </div>
