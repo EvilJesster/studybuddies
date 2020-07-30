@@ -1,4 +1,6 @@
-from flask import Blueprint, render_template, session, redirect, url_for
+from flask import Blueprint, render_template, session, redirect, url_for, request
+from project.routes.users.forms import PostForm
+from project.routes.users.models import User
 from project import mongo
 from datetime import datetime
 landing = Blueprint('landing', __name__)
@@ -9,6 +11,7 @@ posts = mongo.db.posts
 @landing.route('/')
 def tester(): #TODO:make this a real name
     global users,foll, posts
+    form = PostForm(request.form)
     #userinfo.insert({'event': 'event_name', 'date': 'event_date', 'user': 'user_name'})
     if(session.get('lin') == True):
         holder = users.find_one({'unique': session.get('unique')})

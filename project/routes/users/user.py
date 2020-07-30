@@ -109,8 +109,11 @@ def search():
             print(form.data)
             results = []
             if(form.data['uname'] != ''):
+
                 pfound = users.find_one({'username': form.data['uname']})
-                results.append([pfound, 90])
+                if(pfound != None):
+                    if(pfound['name'] != None):
+                        results = [[pfound, 90]]
             else:
                 filt = {'name':{'$ne': None}}
                 udump = users.find(filt)
