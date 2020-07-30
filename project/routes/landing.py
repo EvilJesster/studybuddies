@@ -16,3 +16,11 @@ def tester(): #TODO:make this a real name
     else:
         return(render_template('notloggedin.html', time = datetime.now()))
     return(render_template('base.html', time = datetime.now()))
+
+@landing.route('/about')
+def about():
+    return(render_template('about.html', time = datetime.now()))
+
+@landing.route('/subjects')
+def subjects():
+    return(render_template('subjects.html', time = datetime.now()))
