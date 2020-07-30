@@ -164,3 +164,17 @@ def other(page):
         return(render_template('profile.html', info =selected, ownpro=ownpro, time=datetime.now()))
     return (redirect(url_for('landing.tester')))
 
+@user.route('/following')
+def following():
+    global foll
+    global users
+    if(session.get('lin') == True): #TODO make this a function
+        holder = users.find_one({'unique': session.get('unique')})
+        if (holder['name'] == None):
+            return (redirect(url_for('user.setup')))
+        filt = {'unique': session.get('unique')}
+        folhold = []
+        if (foll.find_one(filt) != None):
+            folhold = foll.find_one({'unique': session.get('unique')})['following']
+        return(render_template('following.html', following=folhold, time=datetime.now()))
+    return (redirect(url_for('landing.tester')))
