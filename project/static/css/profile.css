@@ -77,6 +77,29 @@ h5 {
     justify-content:space-between;
 }
 
+.skilltabs {
+    width:229px;
+}
+
+.skilltabs .nav-link.active {
+    background-color:#C55C79;
+    color:#F4DACD;
+    border:none;
+}
+
+.skilltabs .nav-item {
+    color:#C55C79;
+    border:none;
+}
+
+#skills > .tab-content {
+    background-color:rgba(244, 218, 205, 0.5);
+    width:100px;
+    display:flex;
+    padding:20px;
+    border-radius:10px;
+}
+
 #skills h2 {
     text-transform:uppercase;
     color:#C55C79;
@@ -86,7 +109,7 @@ h5 {
     margin-bottom:20px;
 }
 
-#skills ul {
+ul.strengths, ul.weaknesses {
     list-style-type: none;
     padding-left: 0;
 }
@@ -99,13 +122,13 @@ h5 {
     padding:30px;
 }
 
-#strengths ul li::before {
+ul.strengths li::before {
     content: "\f058";
     font-family: "Font Awesome 5 Free";
     padding: 0 10px 0 0;
 }
 
-#weaknesses ul li::before {
+ul.weaknesses li::before {
     content: "\f057";
     font-family: "Font Awesome 5 Free";
     padding: 0 10px 0 0;
