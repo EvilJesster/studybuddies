@@ -2,6 +2,7 @@
 
 {% block styling %}
 <link rel="stylesheet" type="text/css" href="static/css/profile.css?q={{ time }}" />
+<link rel="stylesheet" type="text/css" href="static/css/forms.css?q={{ time }}" />
 {% endblock %}
 
 {% block title %}{{ info['name'] }} • {% endblock %}
@@ -87,7 +88,15 @@
                     </ul>
                 </div>
             </div>
-            
-        </div>
+            <form method="POST" action="{{url_for('user.profile')}}">
+                {{ form.csrf_token }}
+                {{ form.post }}
+                <button type="submit">Post</button>
+            </form>
+            {% for post in posts %}
+                {{ post }}
+            {% endfor %}
+
+        </div><!-- end profile contain-->
     </div>
 {% endblock %}
