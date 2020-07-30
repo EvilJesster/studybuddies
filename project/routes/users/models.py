@@ -2,6 +2,7 @@ from project import mongo, bcrypt
 import uuid
 
 users = mongo.db.users
+foll = mongo.db.followlist
 class User: # user class to handle database stuff involving user
 
     def __init__(self, username, password, unique):
@@ -41,8 +42,14 @@ class User: # user class to handle database stuff involving user
 
     @classmethod
     def follow(cls, unique, target):
-        foll = mongo.db.followlist
-
+        global foll
+        filt = {'unique': unique}
+        if(foll.find_one(filt) == None):
+            foll.insert({'unique': unique, 'followlist': [target]})
+        else:
+            hold = foll.find_one(filt)['followlist']
+            hold.append(target)
+            foll.update_one(filt, {'$set': {'followlist': hold}})
 
 
     @classmethod
