@@ -23,6 +23,7 @@ def tester(): #TODO:make this a real name
         if (foll.find_one(filt) != None):
             folhold = foll.find_one({'unique': session.get('unique')})['followlist']
         post = []
+        folhold.append(session.get('username'))
         for i in folhold:
             posthold = {}
             if (posts.find_one({'username': i}) != None):
