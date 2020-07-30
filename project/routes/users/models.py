@@ -57,16 +57,18 @@ class User: # user class to handle database stuff involving user
 
     @classmethod
     def addpost(cls, unique, post):
-        global posts
+        global posts, users
+
         filt = {'unique': unique}
+        holduser = users.find_one(filt)['username']
         plist = []
         plist.append(post)
         if(posts.find_one(filt) == None):
-            posts.insert({'unique': unique, 'plist': plist})
+            posts.insert({'unique': unique, 'plist': plist, 'username':holduser})
         else:
             hold = posts.find_one(filt)['plist']
-            hold.append(plist)
-            posts.update_one(filt, {'$set': {'plist': plist}})
+            hold.append(plist[0])
+            posts.update_one(filt, {'$set': {'plist': hold}})
 
     @classmethod
     def addpfp(cls, url, unique):

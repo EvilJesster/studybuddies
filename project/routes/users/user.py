@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
 from project.routes.users.forms import UserForm, SetupForm, SearchForm, PfpForm, PostForm
 from project.routes.users.models import User
+from project.routes.users.helper import isSetup
 from datetime import datetime
 import uuid
 from project import mongo
@@ -102,6 +103,7 @@ def search():
     global users
     form = SearchForm(request.form)
     if(session.get('lin') == True):
+        isSetup()
         if (request.method == 'POST' and form.validate()):
             #display user in order of matches with search
             print(form.data)
@@ -157,16 +159,17 @@ def other(page):
         if (request.method == 'POST'):
             print(request.form['follow'])
             User.follow(session.get('unique'), page)
-        holder = users.find_one({'unique': session.get('unique')})
-        if (holder['name'] == None):
-            return (redirect(url_for('user.setup')))
+        isSetup()
         selected = users.find_one({'username': page})
         folhold = foll.find_one({'unique': session.get('unique')})['followlist']
         ownpro = False
         isfol = False
         if(page in folhold):
             isfol = True
+        posthold = []
 
+        if (posts.find_one({'username': page}) != None):
+            posthold = posts.find_one({'unique': session.get('unique')})['plist']
         return(render_template('profile.html', info =selected, ownpro=ownpro, isfol=isfol, posts=posthold, time=datetime.now()))
     return (redirect(url_for('landing.tester')))
 
@@ -175,9 +178,7 @@ def following():
     global foll
     global users
     if(session.get('lin') == True): #TODO make this a function
-        holder = users.find_one({'unique': session.get('unique')})
-        if (holder['name'] == None):
-            return (redirect(url_for('user.setup')))
+        isSetup()
         filt = {'unique': session.get('unique')}
         folhold = []
         if (foll.find_one(filt) != None):
