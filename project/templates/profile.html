@@ -37,16 +37,46 @@
                 <div id="strengths">
                     <h2>strengths</h2>
                     <ul>
-                    {% for i in info['strengths'] %}
-                        <li>{{ i }}</li>
+                    {% for skill in info['art']['strengths'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['business']['strengths'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['engineering']['strengths'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['humanities']['strengths'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['math']['strengths'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['science']['strengths'] %}
+                        <li>{{ skill }}</li>
                     {% endfor %}
                     </ul>
                 </div>
                 <div id="weaknesses">
                     <h2>weaknesses</h2>
                     <ul>
-                    {% for i in info['weaknesses'] %}
-                        <li>{{ i }}</li>
+                    {% for skill in info['art']['weaknesses'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['business']['weaknesses'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['engineering']['weaknesses'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['humanities']['weaknesses'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['math']['weaknesses'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['science']['weaknesses'] %}
+                        <li>{{ skill }}</li>
                     {% endfor %}
                     </ul>
                 </div>
