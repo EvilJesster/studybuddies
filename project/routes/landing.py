@@ -27,7 +27,7 @@ def tester(): #TODO:make this a real name
         for i in folhold:
             posthold = {}
             if (posts.find_one({'username': i}) != None):
-                posthold['post'] = posts.find_one({'username': i})['plist'][::-1]
+                posthold['post'] = posts.find_one({'username': i})['plist'][-1]
                 curuse = users.find_one({'username':i})
                 posthold['pfp'] = curuse['pfp']
                 posthold['username'] = curuse['username']
