@@ -81,13 +81,17 @@ h5 {
     width:229px;
 }
 
+.nav-tabs {
+    width:229px;
+}
+
 .skilltabs .nav-link.active {
     background-color:#C55C79;
     color:#F4DACD;
     border:none;
 }
 
-.skilltabs .nav-item {
+.skilltabs .nav-item, .nav-tabs {
     color:#C55C79;
     border:none;
 }
@@ -132,4 +136,13 @@ ul.weaknesses li::before {
     content: "\f057";
     font-family: "Font Awesome 5 Free";
     padding: 0 10px 0 0;
+}
+
+.info-box button.following-btn {
+    background-color:#C55C79;
+    color:#F4DACD;
+}
+.info-box button.following-btn:hover {
+    background-color:#ac405e;
+    color:#F4DACD;
 }
