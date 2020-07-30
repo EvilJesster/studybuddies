@@ -163,6 +163,7 @@ textarea {
 .make-post {
     background-color:#F4DACD;
     padding:20px;
+    border-radius:10px;
 }
 
 .make-post form {
