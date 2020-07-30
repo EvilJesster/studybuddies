@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
-from project.routes.users.forms import UserForm, SetupForm, SearchForm, PfpForm
+from project.routes.users.forms import UserForm, SetupForm, SearchForm, PfpForm, PostForm
 from project.routes.users.models import User
 from datetime import datetime
 import uuid
@@ -75,6 +75,7 @@ def logout():
 def profile():
     global users
     global foll
+    form = PostForm
     if (session.get('lin') == True):
         holder = users.find_one({'unique': session.get('unique')})
         if (holder['name'] == None):
@@ -82,7 +83,8 @@ def profile():
         if(session.get('lin') == True):
             holder = users.find_one({'unique': session.get('unique')})
             folhold = foll.find_one({'unique': session.get('unique')})
-            return(render_template('profile.html', info=holder, following=folhold,  time = datetime.now()))
+            ownpro = True
+            return(render_template('profile.html', info=holder, following=folhold, ownpro = ownpro, form=form,  time = datetime.now()))
     return(redirect(url_for('landing.tester')))
 
 
@@ -153,8 +155,8 @@ def other(page):
         if (holder['name'] == None):
             return (redirect(url_for('user.setup')))
         selected = users.find_one({'username': page})
-
         folhold = foll.find_one({'unique': session.get('unique')})
-        return(render_template('profile.html', info =selected, following = folhold,  time=datetime.now()))
+        ownpro = False
+        return(render_template('profile.html', info =selected, ownpro=ownpro, time=datetime.now()))
     return (redirect(url_for('landing.tester')))
 
