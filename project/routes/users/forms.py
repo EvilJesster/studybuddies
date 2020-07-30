@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SelectField, SelectMultipleField, FormField, FieldList
+from wtforms import StringField, PasswordField, SelectField, SelectMultipleField, FormField, FieldList, TextAreaField
 from wtforms.validators import DataRequired, Email, URL
 
 strengths_label = "I'm strong in..."
@@ -86,4 +86,6 @@ class SearchForm(FlaskForm):
 class PfpForm(FlaskForm):
     pfp = StringField('url to your pfp', validators=[DataRequired(), URL()])
 
+class PostForm(FlaskForm):
+    post = TextAreaField('Write your post here')
 
