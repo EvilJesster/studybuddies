@@ -93,10 +93,17 @@ h5 {
 }
 
 .skills {
-    display:flex;
+    /*display:flex;*/
     margin-top:10px;
 }
 
 .skills div {
     margin-right:10px;
+}
+
+.skills span::after {
+    content:", "
+}
+.skills span:last-child::after {
+    content:""
 }
