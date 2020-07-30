@@ -3,6 +3,7 @@ import uuid
 
 users = mongo.db.users
 foll = mongo.db.followlist
+posts = mongo.db.posts
 class User: # user class to handle database stuff involving user
 
     def __init__(self, username, password, unique):
@@ -51,6 +52,18 @@ class User: # user class to handle database stuff involving user
             hold.append(target)
             foll.update_one(filt, {'$set': {'followlist': hold}})
 
+    @classmethod
+    def addpost(cls, unique, post):
+        global posts
+        filt = {'unique': unique}
+        plist = []
+        plist.append(post)
+        if(posts.find_one(filt) == None):
+            posts.insert({'unique': unique, 'plist': plist})
+        else:
+            hold = posts.find_one(filt)['plist']
+            hold.append(plist)
+            posts.update_one(filt, {'$set': {'plist': plist}})
 
     @classmethod
     def addpfp(cls, url, unique):
