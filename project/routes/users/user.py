@@ -84,7 +84,6 @@ def profile():
             return (redirect(url_for('user.setup')))
         ownpro = True
         filt = {'unique':  session.get('unique')}
-
         posthold = []
         if(posts.find_one(filt) != None):
             posthold = posts.find_one({'unique': session.get('unique')})['plist']
