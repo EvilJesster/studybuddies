@@ -134,3 +134,10 @@ h2 {
 #formtab a{
     color:#C55C79;
 }
+
+#formtab .nav .nav-link {
+    margin-bottom:10px;
+}
+#formtab .nav .nav-link:last-child {
+    margin-bottom:0px;
+}

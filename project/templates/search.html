@@ -9,19 +9,17 @@
 
 {% block content %}
     <div class="container-lg" id="bg-contain">
-        <div class="search-contain">
+        <div class="search-contain" style="padding-top:30px;">
+            <h2>Search</h2>
             <form method="POST" action="{{ url_for('user.search' )}}">
                 {{ form.csrf_token }}
-                <div style="display:flex;">
+                <div class="filter-hold">
                     {{ form.uname }}
-                    <div>
-                        <button type="submit"><i class="fas fa-search"></i></button>
-                    </div>
-                    <div>
+                    
                         <button type="button" data-toggle="collapse" data-target="#filters" aria-expanded="false" aria-controls="collapseExample">
                             Filters
                         </button>
-                    </div>
+                        <button type="submit"><i class="fas fa-search"></i></button>
                 </div>
                 
                 <div class="collapse" id="filters">
@@ -51,12 +49,34 @@
             </form>
 
             {% if results %}
-                {% for i in results %}
-                    <div class="result">
-                        <a href="/">{{ i[0].username }}</a>
-                        {{ i[1] }} {# this is the overlap score #}
-                    </div>
-                {% endfor %}
+                <div class="results-contain">
+                    {% for i in results %}
+                        <div class="result">
+                            <a href="{{url_for('user.other', page = i[0].username)}}">
+                                <img src="{{i[0].pfp}}"/>
+                            </a>
+                            <div class="info-box">
+                                <!--type-->
+                                <h5>&nbsp;<i class="fas fa-school"></i>&nbsp;
+                                    {% if i[0].type == 'C'%}
+                                        College Student
+                                    {% else %}
+                                        High School Student
+                                    {% endif %}
+                                </h5>
+                                <!--Name and username-->
+                                <a href="{{url_for('user.other', page = i[0].username)}}">
+                                    <h1>{{ i[0].name }} (@{{ i[0].username }})</h1>
+                                </a>
+                                <div class="skills">
+                                    <div><i class="fas fa-check-circle"></i> Strengths</div>
+                                    <div><i class="fas fa-times-circle"></i> Weaknesses</div>
+                                </div>
+                                <!--{{ i[1] }} {# this is the overlap score #}-->
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             {% endif %}
 
         </div>
