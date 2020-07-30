@@ -29,7 +29,8 @@
                          <a href="{{ url_for('user.following') }}"><button type="button" class="btn btn-outline-primary"><i class="fas fa-users"></i> &nbsp;Follow List</button></a>
                         {% else %}
                         <form method="POST" action="{{url_for('user.other', page = info['username'] )}}">
-                            <button type="submit" class="btn btn-outline-primary" name="follow" value="True"><i class="fas fa-user-plus"></i> &nbsp;Follow</button>
+                            <button type="submit" class="btn btn-outline-primary {% if isfol %}following-btn{%endif%}" name="follow" value="True"><i class="fas fa-user-plus"></i> &nbsp;
+                            {% if isfol %}Following{%else%}Follow{%endif %}</button>
                         </form>
                         {% endif %}
                          
