@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block styling %}
 <link rel="stylesheet" type="text/css" href="static/css/profile.css?q={{ time }}" />
+<link rel="stylesheet" type="text/css" href="static/css/posts.css?q={{ time }}" />
 {% endblock %}
 {% block nav %}
                 <a class="nav-item nav-link" href="{{ url_for('user.search') }}">Search</a>
@@ -19,32 +20,49 @@
 {% endblock %}
 
 {%  block content %}
-         <div class="container-lg" id="bg-contain">
-        <div class="profile-contain">
-
-
-            <br>
-
-            <div class="posts-contain">
+         <div class="container-lg" id="bg-contain" style="flex-direction:row;">
+             <div id="left-col">
+                 hello
+            </div>
+            <div id="right-col">
+                <div class="make-post-contain">
+                 <div class="make-post">
+                    <form method="POST" action="{{url_for('landing.tester')}}">
+                        {{ form.csrf_token }}
+                        {{ form.post }}
+                        <button type="submit">Post</button>
+                    </form>
+                </div>
+            </div>
+            <div class="profile-contain" style="margin-top:0px;width:600px;">
+            <h2 align="center">Recent Posts</h2>
+            <div class="posts-contain" style="width:100%;margin-left:0px;">
             {% if post %}
                  {% for i in post %}
-                <div class="make-post">
+                
                     <div class="post">
                         <div class="post-head">
                             <img src="{{ i['pfp'] }}" class="pfp"/>
-                            <div style="padding:0px;">
-                                <span class="name">{{ i['name']}}</span><br/>
-                                @{{ i['username']}}
+                            <div class="spacer">
+                                <div>
+                                    <span class="name">{{ i['name']}}</span><br/>
+                                    @{{ i['username']}}
+                                </div>
+                                <div class="timestamp">
+                                    {{ i['post'][1][11:16] }} - {{ i['post'][1][5:7] }}/{{ i['post'][1][8:10] }}/{{ i['post'][1][2:4] }}
+                                </div>
                             </div>
                         </div>
                         <div style="padding-top:20px;font-size:20px;">
-                            {{ i['post'] }}
+                            {{ i['post'][0] }}
                         </div>
                     </div>
                 {% endfor %}
             {% endif %}
-            </div>
+            
 
         </div><!-- end profile contain-->
-    </div>
+            </div>
+            </div>
+        </div>
 {% endblock %}
