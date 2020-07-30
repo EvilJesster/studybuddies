@@ -1,1 +1,3 @@
-# studybuddies
+# Studybuddies
+
+Study Buddies is a project to connect people with complementary strengths and weaknesses to facilitate productive studying. Study Buddies primarily targets the college student demographic due to the importance of studying in college. Study Buddies can also be readily adapted to a business or custom educational application allowing for more granular course selection in a custom educational role, or more organizational interconnectivity in a business role. This project was born from our desire to improve the educational system which could benefit from this both now and after COVID. 
