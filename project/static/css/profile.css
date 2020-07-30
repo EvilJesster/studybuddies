@@ -116,6 +116,7 @@ h5 {
 ul.strengths, ul.weaknesses {
     list-style-type: none;
     padding-left: 0;
+    line-height:1.5;
 }
 
 #strengths, #weaknesses {
