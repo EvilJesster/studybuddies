@@ -77,14 +77,13 @@ def profile():
     global users
     global foll
     global posts
-    form = PostForm
+    form = PostForm(request.form)
     if (session.get('lin') == True):
         uinfo = users.find_one({'unique': session.get('unique')})
         if (uinfo['name'] == None):
             return (redirect(url_for('user.setup')))
         ownpro = True
         filt = {'unique':  session.get('unique')}
-
         posthold = []
         if(posts.find_one(filt) != None):
             posthold = posts.find_one({'unique': session.get('unique')})['plist']
@@ -163,7 +162,7 @@ def other(page):
         if(page in folhold):
             isfol = True
 
-        return(render_template('profile.html', info =selected, ownpro=ownpro, isfol=isfol, time=datetime.now()))
+        return(render_template('profile.html', info =selected, ownpro=ownpro, isfol=isfol, posts=posthold, time=datetime.now()))
     return (redirect(url_for('landing.tester')))
 
 @user.route('/following')
