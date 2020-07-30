@@ -23,7 +23,9 @@
                     </h5>
                     <h1>{{ info['name'] }}</h1>
                      <h3>(@{{ info['username'] }})</h3>
-                    <button type="button" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i> &nbsp;Follow</button>
+                     <form method="POST" action="{{url_for('user.other', page = info['username'] )}}">
+                        <button type="submit" class="btn btn-outline-primary"><i class="fas fa-user-plus"></i> &nbsp;Follow</button>
+                    </form>
                     <button type="button" class="btn btn-outline-primary"><i class="fas fa-comment-alt"></i> &nbsp;Message</button>
                 </div>
             </div>
