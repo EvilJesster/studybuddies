@@ -84,13 +84,11 @@ def profile():
             return (redirect(url_for('user.setup')))
         ownpro = True
         filt = {'unique':  session.get('unique')}
-        folhold = []
-        if (foll.find_one(filt) != None):
-            folhold = foll.find_one({'unique': session.get('unique')})['following']
+
         posthold = []
         if(posts.find_one(filt) != None):
             posthold = posts.find_one({'unique': session.get('unique')})['plist']
-        return(render_template('profile.html', info=uinfo, following=folhold, ownpro = ownpro, form=form, posts=posthold,  time = datetime.now()))
+        return(render_template('profile.html', info=uinfo, ownpro = ownpro, form=form, posts=posthold,  time = datetime.now()))
     return(redirect(url_for('landing.tester')))
 
 
@@ -159,9 +157,13 @@ def other(page):
         if (holder['name'] == None):
             return (redirect(url_for('user.setup')))
         selected = users.find_one({'username': page})
-        folhold = foll.find_one({'unique': session.get('unique')})
+        folhold = foll.find_one({'unique': session.get('unique')})['followlist']
         ownpro = False
-        return(render_template('profile.html', info =selected, ownpro=ownpro, time=datetime.now()))
+        isfol = False
+        if(page in folhold):
+            isfol = True
+
+        return(render_template('profile.html', info =selected, ownpro=ownpro, isfol=isfol, time=datetime.now()))
     return (redirect(url_for('landing.tester')))
 
 @user.route('/following')
@@ -175,6 +177,7 @@ def following():
         filt = {'unique': session.get('unique')}
         folhold = []
         if (foll.find_one(filt) != None):
-            folhold = foll.find_one({'unique': session.get('unique')})['following']
+            folhold = foll.find_one({'unique': session.get('unique')})['followlist']
         return(render_template('following.html', following=folhold, time=datetime.now()))
     return (redirect(url_for('landing.tester')))
+
