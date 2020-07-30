@@ -109,8 +109,11 @@ def search():
             print(form.data)
             results = []
             if(form.data['uname'] != ''):
+
                 pfound = users.find_one({'username': form.data['uname']})
-                results.append([pfound, 90])
+                if(pfound != None):
+                    if(pfound['name'] != None):
+                        results = [[pfound, 90]]
             else:
                 filt = {'name':{'$ne': None}}
                 udump = users.find(filt)
@@ -169,7 +172,7 @@ def other(page):
         posthold = []
         if (posts.find_one({'username': page}) != None):
             posthold = posts.find_one({'username': page})['plist'][::-1]
-        return(render_template('profile.html', info =selected, ownpro=ownpro, isfol=isfol, posts=posthold, time=datetime.now()))
+        return(render_template('profile.html', info =selected, ownpro = ownpro, isfol=isfol, posts=posthold, time=datetime.now()))
     return (redirect(url_for('landing.tester')))
 
 @user.route('/following')
