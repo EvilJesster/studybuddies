@@ -72,13 +72,17 @@ def logout():
     session.clear()
     return redirect(url_for('landing.tester'))
 
-@user.route('/profile')
+@user.route('/profile', methods = ['GET', 'POST'])
 def profile():
     global users
     global foll
     global posts
     form = PostForm(request.form)
     if (session.get('lin') == True):
+        if (request.method == 'POST' and form.validate()):
+            holder = form.data['post']
+            User.addpost(session.get('unique'), holder)
+            return(redirect(url_for('user.profile')))
         uinfo = users.find_one({'unique': session.get('unique')})
         if (uinfo['name'] == None):
             return (redirect(url_for('user.setup')))
@@ -87,6 +91,7 @@ def profile():
         posthold = []
         if(posts.find_one(filt) != None):
             posthold = posts.find_one({'unique': session.get('unique')})['plist']
+
         return(render_template('profile.html', info=uinfo, ownpro = ownpro, form=form, posts=posthold,  time = datetime.now()))
     return(redirect(url_for('landing.tester')))
 
