@@ -85,3 +85,5 @@ class SearchForm(FlaskForm):
 
 class PfpForm(FlaskForm):
     pfp = StringField('url to your pfp', validators=[DataRequired(), URL()])
+
+
