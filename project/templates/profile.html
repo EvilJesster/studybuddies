@@ -23,9 +23,15 @@
                     </h5>
                     <h1>{{ info['name'] }}</h1>
                      <h3>(@{{ info['username'] }})</h3>
-                     <div style="display:flex;"><form method="POST" action="{{url_for('user.other', page = info['username'] )}}">
-                        <button type="submit" class="btn btn-outline-primary" name="follow" value="True"><i class="fas fa-user-plus"></i> &nbsp;Follow</button>
-                    </form>
+                     <div style="display:flex;">
+                         {{ if ownpro }}
+                         <form method="POST" action="{{url_for('user.other', page = info['username'] )}}">
+                            <button type="submit" class="btn btn-outline-primary" name="follow" value="True"><i class="fas fa-user-plus"></i> &nbsp;Follow</button>
+                        </form>
+                        {{ else }}
+                        <button type="button" class="btn btn-outline-primary"><i class="fas fa-users"></i> &nbsp;Follow List</button>
+                         {{ endif }}
+                         
                     <button type="button" class="btn btn-outline-primary"><i class="fas fa-comment-alt"></i> &nbsp;Message</button>
                     </div>
                 </div>
