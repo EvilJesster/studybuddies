@@ -14,43 +14,56 @@
                 {{ form.csrf_token }}
                 <div style="display:flex;">
                     {{ form.uname }}
-                    <div align="center">
+                    <div>
                         <button type="submit"><i class="fas fa-search"></i></button>
                     </div>
+                    <div>
+                        <button type="button" data-toggle="collapse" data-target="#filters" aria-expanded="false" aria-controls="collapseExample">
+                            Filters
+                        </button>
+                    </div>
                 </div>
-
-                <!-- subjects -->
-    <label>Subjects</label>
-    <div id="formtab">
-        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width:100px;">
-            <a class="nav-link active" id="v-pills-art-tab" data-toggle="pill" href="#v-pills-art" role="tab" aria-controls="v-pills-art" aria-selected="true">Art</a>
-            <a class="nav-link" id="v-pills-business-tab" data-toggle="pill" href="#v-pills-business" role="tab" aria-controls="v-pills-business" aria-selected="false">Business</a>
-            <a class="nav-link" id="v-pills-engineering-tab" data-toggle="pill" href="#v-pills-engineering" role="tab" aria-controls="v-pills-engineering" aria-selected="false">Engineering</a>
-            <a class="nav-link" id="v-pills-humanities-tab" data-toggle="pill" href="#v-pills-humanities" role="tab" aria-controls="v-pills-humanities" aria-selected="false">Humanities</a>
-            <a class="nav-link" id="v-pills-math-tab" data-toggle="pill" href="#v-pills-math" role="tab" aria-controls="v-pills-math" aria-selected="false">Math</a>
-            <a class="nav-link" id="v-pills-science-tab" data-toggle="pill" href="#v-pills-science" role="tab" aria-controls="v-pills-science" aria-selected="false">Science</a>
-        </div>
-        <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active" id="v-pills-art" role="tabpanel" aria-labelledby="v-pills-art-tab">{{ form.art }}</div>
-            <div class="tab-pane fade" id="v-pills-business" role="tabpanel" aria-labelledby="v-pills-business-tab">{{ form.business }}</div>
-            <div class="tab-pane fade" id="v-pills-engineering" role="tabpanel" aria-labelledby="v-pills-engineering-tab">{{ form.engineering }}</div>
-            <div class="tab-pane fade" id="v-pills-humanities" role="tabpanel" aria-labelledby="v-pills-humanities-tab">{{ form.humanities }}</div>
-            <div class="tab-pane fade" id="v-pills-math" role="tabpanel" aria-labelledby="v-pills-math-tab">{{ form.math }}</div>
-            <div class="tab-pane fade" id="v-pills-science" role="tabpanel" aria-labelledby="v-pills-science-tab">{{ form.science }}</div>
-        </div>
-    </div>
-
-   <div align="center" style="margin-top:30px;">
-        <button type="submit">Search!</button>
-    </div>
+                
+                <div class="collapse" id="filters">
+                    <!-- subjects -->
+                    <label>Subjects</label>
+                    <div id="formtab">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="width:100px;">
+                            <a class="nav-link active" id="v-pills-art-tab" data-toggle="pill" href="#v-pills-art" role="tab" aria-controls="v-pills-art" aria-selected="true">Art</a>
+                            <a class="nav-link" id="v-pills-business-tab" data-toggle="pill" href="#v-pills-business" role="tab" aria-controls="v-pills-business" aria-selected="false">Business</a>
+                            <a class="nav-link" id="v-pills-engineering-tab" data-toggle="pill" href="#v-pills-engineering" role="tab" aria-controls="v-pills-engineering" aria-selected="false">Engineering</a>
+                            <a class="nav-link" id="v-pills-humanities-tab" data-toggle="pill" href="#v-pills-humanities" role="tab" aria-controls="v-pills-humanities" aria-selected="false">Humanities</a>
+                            <a class="nav-link" id="v-pills-math-tab" data-toggle="pill" href="#v-pills-math" role="tab" aria-controls="v-pills-math" aria-selected="false">Math</a>
+                            <a class="nav-link" id="v-pills-science-tab" data-toggle="pill" href="#v-pills-science" role="tab" aria-controls="v-pills-science" aria-selected="false">Science</a>
+                        </div>
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="v-pills-art" role="tabpanel" aria-labelledby="v-pills-art-tab">{{ form.art }}</div>
+                            <div class="tab-pane fade" id="v-pills-business" role="tabpanel" aria-labelledby="v-pills-business-tab">{{ form.business }}</div>
+                            <div class="tab-pane fade" id="v-pills-engineering" role="tabpanel" aria-labelledby="v-pills-engineering-tab">{{ form.engineering }}</div>
+                            <div class="tab-pane fade" id="v-pills-humanities" role="tabpanel" aria-labelledby="v-pills-humanities-tab">{{ form.humanities }}</div>
+                            <div class="tab-pane fade" id="v-pills-math" role="tabpanel" aria-labelledby="v-pills-math-tab">{{ form.math }}</div>
+                            <div class="tab-pane fade" id="v-pills-science" role="tabpanel" aria-labelledby="v-pills-science-tab">{{ form.science }}</div>
+                        </div>
+                    </div>
+                </div>
+    
 
             </form>
+
+            {% if results %}
+                {% for i in results %}
+                    <div class="result">
+                        <a href="/">{{ i[0].username }}</a>
+                        {{ i[1] }} {# this is the overlap score #}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
         </div>
     </div>
-    {% if results %}
-        {% for i in results %}
-            {{ i[0].username }}
-            {{ i[1] }} {# this is the overlap score #}
-        {% endfor %}
-    {% endif %}
+    
+    
+
 {% endblock %}
+
+{# {url_for('user.' {{i[0].username}})} #}
