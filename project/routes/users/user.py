@@ -120,7 +120,7 @@ def search():
                 print(smatcount)
                 results = []
                 for key, value in smatcount.items():
-                    if (value >= 1):
+                    if (value[0] >= 1):
                         results.append([users.find_one({'_id': key}), value])
             return(render_template('search.html', form=form, time=datetime.now(), results=results))
                     
