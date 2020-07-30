@@ -3,6 +3,7 @@
 {% block styling %}
 <link rel="stylesheet" type="text/css" href="static/css/profile.css?q={{ time }}" />
 <link rel="stylesheet" type="text/css" href="static/css/forms.css?q={{ time }}" />
+<link rel="stylesheet" type="text/css" href="static/css/posts.css?q={{ time }}" />
 {% endblock %}
 
 {% block title %}{{ info['name'] }} • {% endblock %}
@@ -114,14 +115,18 @@
                     <div class="post">
                         <div class="post-head">
                             <img src="{{ info['pfp'] }}" class="pfp"/>
-                            <div style="padding:0px;">
-                                <span class="name">{{ info['name']}}</span><br/>
-                                @{{ info['username']}}
+                            <div class="spacer">
+                                <div>
+                                    <span class="name">{{ info['name']}}</span><br/>
+                                    @{{ info['username']}}
+                                </div>
+                                <div class="timestamp">
+                                    {{ post[1][11:16] }} - {{ post[1][5:7] }}/{{ post[1][8:10] }}/{{ post[1][2:4] }}
+                                </div>
                             </div>
                         </div>
                         <div style="padding-top:20px;font-size:20px;">
                             {{ post[0] }}
-                            {{ post[1] }}
                         </div>
                     </div>
                 {% endfor %}
