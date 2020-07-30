@@ -144,7 +144,7 @@ def other(page):
     global users
     if (session.get('lin') == True):
         if (request.method == 'POST'):
-            pass
+            print(request.form['follow'])
         holder = users.find_one({'unique': session.get('unique')})
         if (holder['name'] == None):
             return (redirect(url_for('user.setup')))
