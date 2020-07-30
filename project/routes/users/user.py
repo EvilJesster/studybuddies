@@ -7,7 +7,7 @@ from project import mongo
 user = Blueprint('user', __name__)
 
 users = mongo.db.users
-
+foll = mongo.db.followlist
 @user.route('/signup', methods=['POST', 'GET'])
 def signup():
     global users
@@ -74,16 +74,18 @@ def logout():
 @user.route('/profile')
 def profile():
     global users
+    global foll
     if (session.get('lin') == True):
         holder = users.find_one({'unique': session.get('unique')})
         if (holder['name'] == None):
             return (redirect(url_for('user.setup')))
         if(session.get('lin') == True):
             holder = users.find_one({'unique': session.get('unique')})
-            return(render_template('profile.html', info=holder, time = datetime.now()))
+            folhold = foll.find_one({'unique': session.get('unique')})
+            return(render_template('profile.html', info=holder, following=folhold,  time = datetime.now()))
     return(redirect(url_for('landing.tester')))
 
-    return(redirect(url_for('landing.tester')))
+
 
 @user.route('/search', methods = ['GET', 'POST'])
 def search():
@@ -142,6 +144,7 @@ def changepfp():
 @user.route('/<page>', methods=['GET', 'POST'])
 def other(page):
     global users
+    global foll
     if (session.get('lin') == True):
         if (request.method == 'POST'):
             print(request.form['follow'])
@@ -150,6 +153,7 @@ def other(page):
         if (holder['name'] == None):
             return (redirect(url_for('user.setup')))
         selected = users.find_one({'username': page})
-        return(render_template('profile.html', info =selected , time=datetime.now()))
+        folhold = foll.find_one({'unique': session.get('unique')})
+        return(render_template('profile.html', info =selected, following = folhold,  time=datetime.now()))
     return (redirect(url_for('landing.tester')))
 
