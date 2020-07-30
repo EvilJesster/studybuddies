@@ -91,8 +91,8 @@ def profile():
         filt = {'unique':  session.get('unique')}
         posthold = []
         if(posts.find_one(filt) != None):
-            posthold = posts.find_one({'unique': session.get('unique')})['plist']
-
+            posthold = posts.find_one({'unique': session.get('unique')})['plist'][::-1]
+        #TODO: add way to remove a strength or weakness
         return(render_template('profile.html', info=uinfo, ownpro = ownpro, form=form, posts=posthold,  time = datetime.now()))
     return(redirect(url_for('landing.tester')))
 
@@ -167,9 +167,8 @@ def other(page):
         if(page in folhold):
             isfol = True
         posthold = []
-
         if (posts.find_one({'username': page}) != None):
-            posthold = posts.find_one({'unique': session.get('unique')})['plist']
+            posthold = posts.find_one({'username': page})['plist'][::-1]
         return(render_template('profile.html', info =selected, ownpro=ownpro, isfol=isfol, posts=posthold, time=datetime.now()))
     return (redirect(url_for('landing.tester')))
 
