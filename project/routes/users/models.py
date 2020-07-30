@@ -49,7 +49,10 @@ class User: # user class to handle database stuff involving user
             foll.insert({'unique': unique, 'followlist': [target]})
         else:
             hold = foll.find_one(filt)['followlist']
-            hold.append(target)
+            if(target in hold):
+                hold.remove(target)
+            else:
+                hold.append(target)
             foll.update_one(filt, {'$set': {'followlist': hold}})
 
     @classmethod
@@ -70,6 +73,7 @@ class User: # user class to handle database stuff involving user
         global users
         filt = {'unique': unique}
         users.update_one(filt, {'$set':{'pfp': url}})
+
     @classmethod
     def authenticate(cls, username, password):
         global users
