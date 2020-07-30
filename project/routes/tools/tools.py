@@ -4,7 +4,7 @@ from project.routes.users.models import User
 from project.routes.users.helper import isSetup
 from datetime import datetime
 from project import mongo
-
+import json
 tools = Blueprint('tools', __name__)
 
 #TODO: move search here

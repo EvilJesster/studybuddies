@@ -10,7 +10,7 @@ posts = mongo.db.posts
 
 @landing.route('/')
 def tester(): #TODO:make this a real name
-    global users,foll, posts
+    global users, foll, posts
     form = PostForm(request.form)
     #userinfo.insert({'event': 'event_name', 'date': 'event_date', 'user': 'user_name'})
     if(session.get('lin') == True):
@@ -34,10 +34,10 @@ def tester(): #TODO:make this a real name
                 posthold['name'] = curuse['name']
                 post.append(posthold)
 
-        return(render_template('loggedin.html', user = holder['name'], ready=ready, post=post, time=datetime.now()))
+        return(render_template('loggedin.html', info = holder, ready=ready, post=post, time=datetime.now()))
     else:
         return(render_template('notloggedin.html', time = datetime.now()))
-    return(render_template('base.html', time = datetime.now()))
+
 
 @landing.route('/about')
 def about():
