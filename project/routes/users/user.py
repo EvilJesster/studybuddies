@@ -153,6 +153,7 @@ def other(page):
         if (holder['name'] == None):
             return (redirect(url_for('user.setup')))
         selected = users.find_one({'username': page})
+
         folhold = foll.find_one({'unique': session.get('unique')})
         return(render_template('profile.html', info =selected, following = folhold,  time=datetime.now()))
     return (redirect(url_for('landing.tester')))
