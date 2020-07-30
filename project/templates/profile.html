@@ -88,14 +88,31 @@
                     </ul>
                 </div>
             </div>
-            <form method="POST" action="{{url_for('user.profile')}}">
-                {{ form.csrf_token }}
-                {{ form.post }}
-                <button type="submit">Post</button>
-            </form>
-            {% for post in posts %}
-                {{ post }}
-            {% endfor %}
+            <div class="posts-contain">
+                {% if ownpro %}
+                <div class="make-post">
+                    <form method="POST" action="{{url_for('user.profile')}}">
+                        {{ form.csrf_token }}
+                        {{ form.post }}
+                        <button type="submit">Post</button>
+                    </form>
+                </div>
+                {% endif %}
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="post-head">
+                            <img src="{{ info['pfp'] }}" class="pfp"/>
+                            <div style="padding:0px;">
+                                <span class="name">{{ info['name']}}</span><br/>
+                                @{{ info['username']}}
+                            </div>
+                        </div>
+                        <div style="padding-top:20px;font-size:20px;">
+                            {{ post }}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
 
         </div><!-- end profile contain-->
     </div>
