@@ -82,8 +82,6 @@ def profile():
         uinfo = users.find_one({'unique': session.get('unique')})
         if (uinfo['name'] == None):
             return (redirect(url_for('user.setup')))
-
-
         ownpro = True
         filt = {'unique':  session.get('unique')}
         folhold = []
@@ -119,10 +117,8 @@ def search():
                     smatcount[i['_id']].append(0)
                     smatcount[i['_id']][0] += len(set(i['art']['strengths']) & set(form.data['art']['strengths']))
                     smatcount[i['_id']][0] += len(set(i['art']['weaknesses']) & set(form.data['art']['weaknesses']))
-
                     smatcount[i['_id']][0] += len(set(i['business']['strengths']) & set(form.data['business']['strengths']))
                     smatcount[i['_id']][0] += len(set(i['business']['weaknesses']) & set(form.data['business']['weaknesses']))
-
                     smatcount[i['_id']][0] += len(set(i['engineering']['strengths']) & set(form.data['engineering']['strengths']))
                     smatcount[i['_id']][0] += len(set(i['engineering']['weaknesses']) & set(form.data['engineering']['weaknesses']))
                     smatcount[i['_id']][0] += len(set(i['humanities']['strengths']) & set(form.data['humanities']['strengths']))
