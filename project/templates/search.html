@@ -69,8 +69,47 @@
                                     <h1>{{ i[0].name }} (@{{ i[0].username }})</h1>
                                 </a>
                                 <div class="skills">
-                                    <div><i class="fas fa-check-circle"></i> Strengths</div>
-                                    <div><i class="fas fa-times-circle"></i> Weaknesses</div>
+                                    <div><i class="fas fa-check-circle"></i>
+                                    {% for skill in i[0]['art']['strengths'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    {% for skill in i[0]['business']['strengths'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    {% for skill in i[0]['engineering']['strengths'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    {% for skill in i[0]['humanities']['strengths'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    {% for skill in i[0]['math']['strengths'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    {% for skill in i[0]['science']['strengths'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    </div>
+                                    <br/>
+                                    <div><i class="fas fa-times-circle"></i>
+                                    {% for skill in i[0]['art']['weaknesses'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    {% for skill in i[0]['business']['weaknesses'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    {% for skill in i[0]['engineering']['weaknesses'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    {% for skill in i[0]['humanities']['weaknesses'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    {% for skill in i[0]['math']['weaknesses'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    {% for skill in i[0]['science']['weaknesses'] %}
+                                        <span>{{ skill }}</span>
+                                    {% endfor %}
+                                    </div>
                                 </div>
                                 <!--{{ i[1] }} {# this is the overlap score #}-->
                             </div>
