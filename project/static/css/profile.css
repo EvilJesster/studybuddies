@@ -62,6 +62,7 @@ h5 {
     font-weight:700;
     margin-right:10px;
     margin-top:5px;
+    display:inline-block;
 }
 
 .info-box button:hover, .info-box button:focus, .info-box button:active {
