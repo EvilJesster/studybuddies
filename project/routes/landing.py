@@ -24,11 +24,11 @@ def tester(): #TODO:make this a real name
             posthold = {}
             if (posts.find_one({'username': i}) != None):
                 posthold['post'] = posts.find_one({'username': i})['plist'][::-1]
-            curuse = users.find_one({'username':i})
-            posthold['pfp'] = curuse['pfp']
-            posthold['username'] = curuse['username']
-            posthold['name'] = curuse['name']
-            post.append(posthold)
+                curuse = users.find_one({'username':i})
+                posthold['pfp'] = curuse['pfp']
+                posthold['username'] = curuse['username']
+                posthold['name'] = curuse['name']
+                post.append(posthold)
 
         return(render_template('loggedin.html', user = holder['name'], ready=ready, post=post, time=datetime.now()))
     else:
