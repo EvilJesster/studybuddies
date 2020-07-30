@@ -8,6 +8,7 @@ user = Blueprint('user', __name__)
 
 users = mongo.db.users
 foll = mongo.db.followlist
+posts = mongo.db.posts
 @user.route('/signup', methods=['POST', 'GET'])
 def signup():
     global users
@@ -75,16 +76,17 @@ def logout():
 def profile():
     global users
     global foll
+    global posts
     form = PostForm
     if (session.get('lin') == True):
-        holder = users.find_one({'unique': session.get('unique')})
-        if (holder['name'] == None):
+        uinfo = users.find_one({'unique': session.get('unique')})
+        if (uinfo['name'] == None):
             return (redirect(url_for('user.setup')))
-        if(session.get('lin') == True):
-            holder = users.find_one({'unique': session.get('unique')})
-            folhold = foll.find_one({'unique': session.get('unique')})
-            ownpro = True
-            return(render_template('profile.html', info=holder, following=folhold, ownpro = ownpro, form=form,  time = datetime.now()))
+
+        folhold = foll.find_one({'unique': session.get('unique')})
+        ownpro = True
+        posthold = posts.find_one({'unique': session.get('unique')})['plist']
+        return(render_template('profile.html', info=uinfo, following=folhold, ownpro = ownpro, form=form, posts=posthold,  time = datetime.now()))
     return(redirect(url_for('landing.tester')))
 
 
