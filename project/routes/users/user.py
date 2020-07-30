@@ -114,6 +114,8 @@ def search():
                 if(pfound != None):
                     if(pfound['name'] != None):
                         results = [[pfound, 90]]
+                if(results == []):
+                    return (render_template('search.html', form=form, time=datetime.now()))
             else:
                 filt = {'name':{'$ne': None}}
                 udump = users.find(filt)

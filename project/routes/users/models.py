@@ -1,5 +1,6 @@
 from project import mongo, bcrypt
-import uuid
+
+from datetime import datetime
 
 users = mongo.db.users
 foll = mongo.db.followlist
@@ -62,7 +63,7 @@ class User: # user class to handle database stuff involving user
         filt = {'unique': unique}
         holduser = users.find_one(filt)['username']
         plist = []
-        plist.append(post)
+        plist.append([post, datetime.now().isoformat(sep='T', timespec='auto')])
         if(posts.find_one(filt) == None):
             posts.insert({'unique': unique, 'plist': plist, 'username':holduser})
         else:
