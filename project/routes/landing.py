@@ -8,12 +8,18 @@ users = mongo.db.users
 foll = mongo.db.followlist
 posts = mongo.db.posts
 
-@landing.route('/')
+@landing.route('/', methods=['POST', 'GET'])
 def tester(): #TODO:make this a real name
     global users,foll, posts
     form = PostForm(request.form)
     #userinfo.insert({'event': 'event_name', 'date': 'event_date', 'user': 'user_name'})
     if(session.get('lin') == True):
+        # make a post on feed
+        if (request.method == 'POST' and form.validate()):
+            holder = form.data['post']
+            User.addpost(session.get('unique'), holder)
+            return(redirect(url_for('landing.tester')))
+
         holder = users.find_one({'unique': session.get('unique')})
         if(holder['name'] == None):
             return(redirect(url_for('user.setup')))
@@ -34,7 +40,7 @@ def tester(): #TODO:make this a real name
                 posthold['name'] = curuse['name']
                 post.append(posthold)
 
-        return(render_template('loggedin.html', user = holder['name'], ready=ready, post=post, time=datetime.now()))
+        return(render_template('loggedin.html', user = holder['name'], ready=ready, post=post, form=form, time=datetime.now()))
     else:
         return(render_template('notloggedin.html', time = datetime.now()))
     return(render_template('base.html', time = datetime.now()))
