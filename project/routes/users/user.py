@@ -134,3 +134,16 @@ def changepfp():
             return(redirect(url_for('user.profile')))
         return render_template('updatepfp.html', form=form, time=datetime.now())
     return(redirect(url_for('landing.tester')))
+
+
+@user.route('/<page>')
+def other(page):
+    global users
+    if (session.get('lin') == True):
+        holder = users.find_one({'unique': session.get('unique')})
+        if (holder['name'] == None):
+            return (redirect(url_for('user.setup')))
+        selected = users.find_one({'username': page})
+        return(render_template('profile.html', info =selected , time=datetime.now()))
+
+    return (redirect(url_for('landing.tester')))
