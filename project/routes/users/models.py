@@ -39,6 +39,11 @@ class User: # user class to handle database stuff involving user
                             'humanities': humanities, 'art': art}}
         users.update_one(filt, builder )
 
+    @classmethod
+    def follow(cls, unique, target):
+        foll = mongo.db.followlist
+
+
 
     @classmethod
     def addpfp(cls, url, unique):

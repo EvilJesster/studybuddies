@@ -93,8 +93,10 @@ def search():
         if (request.method == 'POST' and form.validate()):
             #display user in order of matches with search
             print(form.data)
+            results = []
             if(form.data['uname'] != ''):
                 pfound = users.find_one({'username': form.data['uname']})
+                results.append([pfound, 90])
             else:
                 filt = {'name':{'$ne': None}}
                 udump = users.find(filt)
@@ -118,8 +120,9 @@ def search():
                 print(smatcount)
                 results = []
                 for key, value in smatcount.items():
-                    results.append([users.find_one({'_id': key}), value])
-                return(render_template('search.html', form=form, time=datetime.now(), results=results))
+                    if (value >= 1):
+                        results.append([users.find_one({'_id': key}), value])
+            return(render_template('search.html', form=form, time=datetime.now(), results=results))
                     
         return(render_template('search.html', form=form, time=datetime.now()))
     return(redirect(url_for('user.login')))
@@ -136,14 +139,16 @@ def changepfp():
     return(redirect(url_for('landing.tester')))
 
 
-@user.route('/<page>')
+@user.route('/<page>', methods=['GET', 'POST'])
 def other(page):
     global users
     if (session.get('lin') == True):
+        if (request.method == 'POST'):
+            pass
         holder = users.find_one({'unique': session.get('unique')})
         if (holder['name'] == None):
             return (redirect(url_for('user.setup')))
         selected = users.find_one({'username': page})
         return(render_template('profile.html', info =selected , time=datetime.now()))
-
     return (redirect(url_for('landing.tester')))
+
