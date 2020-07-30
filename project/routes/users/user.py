@@ -169,7 +169,7 @@ def other(page):
         posthold = []
         if (posts.find_one({'username': page}) != None):
             posthold = posts.find_one({'username': page})['plist'][::-1]
-        return(render_template('profile.html', info =selected, ownpro=ownpro, isfol=isfol, posts=posthold, time=datetime.now()))
+        return(render_template('profile.html', info =selected, ownpro = ownpro, isfol=isfol, posts=posthold, time=datetime.now()))
     return (redirect(url_for('landing.tester')))
 
 @user.route('/following')

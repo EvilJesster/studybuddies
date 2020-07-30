@@ -2,8 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SelectField, SelectMultipleField, FormField, FieldList, TextAreaField
 from wtforms.validators import DataRequired, Email, URL
 
-strengths_label = "I'm strong in..."
-weaknesses_label = "I need help in..."
+strengths_label = "feels strong in..."
+weaknesses_label = "need help in..."
 
 class UserForm(FlaskForm):
     username = StringField('username', validators=[DataRequired()])

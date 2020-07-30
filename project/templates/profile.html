@@ -11,9 +11,9 @@
     <div class="container-lg" id="bg-contain">
         <div class="profile-contain">
             <div class="profile-header">
-            <a href="{{ url_for('user.changepfp') }}">
+            {% if ownpro %}<a href="{{ url_for('user.changepfp') }}">{% endif %}
                 <img src="{{ info['pfp'] }}" class="pfp"/>
-            </a>
+            {% if ownpro %}</a>{% endif %}
                 <div class="info-box">
                     <h5>&nbsp;<i class="fas fa-school"></i>&nbsp;
                     {% if info['type'] == 'C'%}
@@ -29,7 +29,8 @@
                          <a href="{{ url_for('user.following') }}"><button type="button" class="btn btn-outline-primary"><i class="fas fa-users"></i> &nbsp;Follow List</button></a>
                         {% else %}
                         <form method="POST" action="{{url_for('user.other', page = info['username'] )}}">
-                            <button type="submit" class="btn btn-outline-primary" name="follow" value="True"><i class="fas fa-user-plus"></i> &nbsp;Follow</button>
+                            <button type="submit" class="btn btn-outline-primary {% if isfol %}following-btn{%endif%}" name="follow" value="True">
+                            {% if isfol %}<i class="fas fa-user-alt"></i> &nbsp;Following{%else%}<i class="fas fa-user-plus"></i> &nbsp;Follow{%endif %}</button>
                         </form>
                         {% endif %}
                          
@@ -40,7 +41,94 @@
             <!--{{ info['contact'] }}-->
             <br>
             <!--- can make these tabs but idk yet -->
-            <div id="skills">
+            
+
+            <div style="display:flex;justify-content:space-between;">
+                <div>
+                    <nav class="skilltabs">
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Strengths</a>
+                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Weaknesses</a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent" style="width:229px;border-top-right-radius:0px;border-top-left-radius:0px;">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                <ul class="strengths">
+                    {% for skill in info['art']['strengths'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['business']['strengths'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['engineering']['strengths'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['humanities']['strengths'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['math']['strengths'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['science']['strengths'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    </ul>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                <ul class="weaknesses">
+                    {% for skill in info['art']['weaknesses'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['business']['weaknesses'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['engineering']['weaknesses'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['humanities']['weaknesses'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['math']['weaknesses'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    {% for skill in info['science']['weaknesses'] %}
+                        <li>{{ skill }}</li>
+                    {% endfor %}
+                    </ul>
+            </div>
+            </div>
+                </div>
+
+               <div class="posts-contain">
+                {% if ownpro %}
+                <div class="make-post">
+                    <form method="POST" action="{{url_for('user.profile')}}">
+                        {{ form.csrf_token }}
+                        {{ form.post }}
+                        <button type="submit">Post</button>
+                    </form>
+                </div>
+                {% endif %}
+                {% if posts %}
+                {% for post in posts %}
+                    <div class="post">
+                        <div class="post-head">
+                            <img src="{{ info['pfp'] }}" class="pfp"/>
+                            <div style="padding:0px;">
+                                <span class="name">{{ info['name']}}</span><br/>
+                                @{{ info['username']}}
+                            </div>
+                        </div>
+                        <div style="padding-top:20px;font-size:20px;">
+                            {{ post }}
+                        </div>
+                    </div>
+                {% endfor %}
+                {% endif %}
+                </div> 
+            </div>
+
+            <!-- <div id="skills">
                 <div id="strengths">
                     <h2>strengths</h2>
                     <ul>
@@ -63,8 +151,8 @@
                         <li>{{ skill }}</li>
                     {% endfor %}
                     </ul>
-                </div>
-                <div id="weaknesses">
+                </div> -->
+                <!-- <div id="weaknesses">
                     <h2>weaknesses</h2>
                     <ul>
                     {% for skill in info['art']['weaknesses'] %}
@@ -87,32 +175,8 @@
                     {% endfor %}
                     </ul>
                 </div>
-            </div>
-            <div class="posts-contain">
-                {% if ownpro %}
-                <div class="make-post">
-                    <form method="POST" action="{{url_for('user.profile')}}">
-                        {{ form.csrf_token }}
-                        {{ form.post }}
-                        <button type="submit">Post</button>
-                    </form>
-                </div>
-                {% endif %}
-                {% for post in posts %}
-                    <div class="post">
-                        <div class="post-head">
-                            <img src="{{ info['pfp'] }}" class="pfp"/>
-                            <div style="padding:0px;">
-                                <span class="name">{{ info['name']}}</span><br/>
-                                @{{ info['username']}}
-                            </div>
-                        </div>
-                        <div style="padding-top:20px;font-size:20px;">
-                            {{ post }}
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+            </div> -->
+            
 
         </div><!-- end profile contain-->
     </div>

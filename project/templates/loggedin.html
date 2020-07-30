@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block styling %}
+<link rel="stylesheet" type="text/css" href="static/css/profile.css?q={{ time }}" />
+{% endblock %}
 {% block nav %}
                 <a class="nav-item nav-link" href="{{ url_for('user.search') }}">Search</a>
                 <li class="nav-item dropdown">
@@ -16,5 +19,32 @@
 {% endblock %}
 
 {%  block content %}
+         <div class="container-lg" id="bg-contain">
+        <div class="profile-contain">
 
+
+            <br>
+
+            <div class="posts-contain">
+            {% if post %}
+                 {% for i in post %}
+                <div class="make-post">
+                    <div class="post">
+                        <div class="post-head">
+                            <img src="{{ i['pfp'] }}" class="pfp"/>
+                            <div style="padding:0px;">
+                                <span class="name">{{ i['name']}}</span><br/>
+                                @{{ i['username']}}
+                            </div>
+                        </div>
+                        <div style="padding-top:20px;font-size:20px;">
+                            {{ i['post'] }}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            </div>
+
+        </div><!-- end profile contain-->
+    </div>
 {% endblock %}

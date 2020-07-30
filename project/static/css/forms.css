@@ -156,7 +156,8 @@ textarea {
 }
 
 .posts-contain {
-    margin-top:20px;
+    margin-left:20px;
+    width:480px;
 }
 
 .make-post {
