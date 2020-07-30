@@ -11,9 +11,9 @@
     <div class="container-lg" id="bg-contain">
         <div class="profile-contain">
             <div class="profile-header">
-            <a href="{{ url_for('user.changepfp') }}">
+            {% if ownpro %}<a href="{{ url_for('user.changepfp') }}">{% endif %}
                 <img src="{{ info['pfp'] }}" class="pfp"/>
-            </a>
+            {% if ownpro %}</a>{% endif %}
                 <div class="info-box">
                     <h5>&nbsp;<i class="fas fa-school"></i>&nbsp;
                     {% if info['type'] == 'C'%}
