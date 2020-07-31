@@ -3,13 +3,15 @@ from project.routes.users.forms import UserForm, SetupForm, SearchForm, PfpForm,
 from project.routes.users.models import User
 from project.routes.users.helper import isSetup
 from datetime import datetime
-import uuid
+import uuid, json
 from project import mongo
 user = Blueprint('user', __name__)
 
 users = mongo.db.users
 foll = mongo.db.followlist
 posts = mongo.db.posts
+
+
 @user.route('/signup', methods=['POST', 'GET'])
 def signup():
     global users
@@ -99,7 +101,7 @@ def profile():
 
 
 @user.route('/search', methods = ['GET', 'POST'])
-def search():
+def search(): #TODO: move to tools
     global users
     form = SearchForm(request.form)
     if(session.get('lin') == True):
@@ -181,7 +183,7 @@ def other(page):
 def following():
     global foll
     global users
-    if(session.get('lin') == True): #TODO make this a function
+    if(session.get('lin') == True):
         isSetup()
         filt = {'unique': session.get('unique')}
         folhold = []
@@ -189,4 +191,21 @@ def following():
             folhold = foll.find_one({'unique': session.get('unique')})['followlist']
         return(render_template('following.html', following=folhold, time=datetime.now()))
     return (redirect(url_for('landing.tester')))
+
+
+@user.route('/messaging', methods=['GET', 'POST'])
+def messaging():
+    if (session.get('lin') == True):
+        isSetup()
+        return(render_template('messaging.html'))
+    return (redirect(url_for('landing.tester')))
+
+
+@user.route('/messagingback', methods=['POST']) #todo: move this to tools
+def snedmess():
+    sender = request.form['message']
+    return(json.dumps({' status': 'OK', 'message': sender}))
+
+
+
 
