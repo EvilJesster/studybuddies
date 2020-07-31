@@ -22,7 +22,9 @@
 {%  block content %}
          <div class="container-lg" id="bg-contain" style="flex-direction:row;">
              <div id="left-col">
-                 hello
+                <div><a href="{{url_for('user.profile')}}"><img src="{{ info['pfp']}}" class="feed-pfp"/></a></div>
+                <div id="feed-name"><a href="{{url_for('user.profile')}}" style="color:black">{{ info['name']}}</a></div>
+                <div id="feed-username">@{{ info['username']}}</div>
             </div>
             <div id="right-col">
                 <div class="make-post-contain">
@@ -42,11 +44,11 @@
                 
                     <div class="post">
                         <div class="post-head">
-                            <img src="{{ i['pfp'] }}" class="pfp"/>
+                            <a href="{{url_for('user.other', page = i.username)}}" style="color:black;"><img src="{{ i['pfp'] }}" class="pfp"/></a>
                             <div class="spacer">
                                 <div>
-                                    <span class="name">{{ i['name']}}</span><br/>
-                                    @{{ i['username']}}
+                                    <a href="{{url_for('user.other', page = i.username)}}" style="color:black;"><span class="name">{{ i['name']}}</span><br/>
+                                    @{{ i['username']}}</a>
                                 </div>
                                 <div class="timestamp">
                                     {{ i['post'][1][11:16] }} - {{ i['post'][1][5:7] }}/{{ i['post'][1][8:10] }}/{{ i['post'][1][2:4] }}

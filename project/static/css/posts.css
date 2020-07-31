@@ -2,10 +2,41 @@
     background-color:rgba(244, 218, 205, 0.7);
     width:250px;
     align-self:flex-start;
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
     margin-top:100px;
     border-radius:10px;
-    padding:20px;
+    overflow:none;
     margin-right:20px;
+    padding-top:20px;
+    padding-bottom:20px;
+    text-align:center;
+}
+#left-col div {
+    z-index:999999;
+}
+
+a:hover {
+    text-decoration:none;
+}
+
+.feed-pfp {
+    object-fit: cover;
+    margin-top:20px;
+    margin-bottom:10px;
+    width: 100px;
+    height: 100px;
+    border-radius:10px;
+}
+
+#feed-name {
+    font-weight:700;
+    font-size:20px;
+}
+
+#feed-username {
+    padding-bottom:10px;
 }
 
 #right-col {
